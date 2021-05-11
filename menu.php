@@ -71,7 +71,8 @@ $myRestruant->updateMenu();
 
 <script>
 $('.editBtn').on('click',function(){
-$(this).prev().children().first().next().modal('show');
+    console.log($(this).parent().prev().modal('show'))
+
 })
 
 </script>

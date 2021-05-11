@@ -86,32 +86,11 @@
             }
          }
 
-         public function addtoCart(){
-            if(isset($_POST['addCart'])){
-                 $image=$_POST['image'];
-                 $productname=$_POST['productname'];
-                 $price=$_POST['price'];
-                 $username=$_SESSION['username'];
-                 $connection =$this->openConnection();
-                 $statement=$connection->prepare("INSERT INTO  cart(productname,username,price,image) VALUES (?,?,?,?)");
-                 $statement->execute([$productname,$username,$price,$image]);
-                 
-            }
-         }
 
         
-         public function addOrder(){
-            if(isset($_POST['placeOrder'])&& $_POST['orderedQuantity']!=0){
-                 $orderedQuantity=$_POST['orderedQuantity'];
-                 $productname=$_POST['productname'];
-                 $username=$_SESSION['username'];
-                 $subtotal=intval($_POST['subtotal']);
-                 $connection =$this->openConnection();
-                 $statement=$connection->prepare("INSERT INTO  ordered_products(username,productName,quantity,total) VALUES (?,?,?,?)");
-                 $statement->execute([$username,$productname,$orderedQuantity,$subtotal]);
-            }
-         }
-
+        
+   //for admin functionalities
+   //display all menu details
         public function dispMenu(){
                 $connection =$this->openConnection(); 
                 $statement=$connection->prepare("SELECT * FROM menu  WHERE deleteAt is  NULL");
@@ -131,8 +110,7 @@
                 '.$item['category'].'
              </td>
              <td>
-             <form method="post">
-             <input type="hidden" name="id"value="'.$item['menuID'].'">
+             
              <!-- Edit Menu Modal -->
             <div class="modal fade editModal"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
@@ -167,7 +145,9 @@
                         </div>
                 </div>
             </div>
-             <button class="btn btn-info  editBtn">Edit</button>
+            <form method="post">
+            <button  type="button"class="btn btn-info editBtn">Edit</button>
+            <input type="hidden" name="id"value="'.$item['menuID'].'">
              <button type="submit"class="btn btn-danger" name="deleteBtn">Delete</button>
             </form>
              </td>
@@ -213,39 +193,47 @@
         }
        
 
-        public function dispOrderT1(){
-            $connection =$this->openConnection(); 
-            $statement=$connection->prepare("SELECT * FROM order_table  WHERE tableNo=1");
-            $statement->execute();
-            $items = $statement->fetchAll();
-            foreach($items as $item) 
-         {  
-         echo'  <tr>
-         <td>
-            '.$item['menuName'].'
-         </td>
-         <td>
-            '.$item['price'].'
-         </td>
-         <td>
-         '.$item['price'].'
-         </td>
-         <td>
-           <p class="subtotal"></p>
-         </td>
-         <td>
-         '.$item['status'].'
-         </td>
-         <td>
-         <form method="post">
-         <button class="btn btn-success">deliver</button>
-         <button type="submit"class="btn btn-danger" name="deleteBtn">Delete</button>
-        </form>
-         </td>
-         </tr>';
+        
+        public function addOrder(){
+            if(isset($_POST['addOrder'])){
+                 $category=$_POST['category'];
+                 $menuName=$_POST['menuName'];
+                 $quantity=$_POST['quantity'];
+                 $status="pending";
+                 $tableNo=intVal($_POST['tableNo']);
+                 $connection =$this->openConnection();
+                 $getPriceStatement=$connection->prepare("SELECT price FROM menu  WHERE menuName='$menuName'");
+                 $getPriceStatement->execute();
+                 $result=$getPriceStatement->fetch();
+                 $price= $result['price'];
+                 $subtotal=intVal($quantity)*intVal($price);
+                 $statement=$connection->prepare("INSERT INTO  order_table(category,menuName,quantity,status,price,tableNo,subtotal) VALUES (?,?,?,?,?,?,?)");
+                 $statement->execute([$category, $menuName,$quantity, $status, $price,$tableNo,$subtotal]);
+            }
          }
-    }
+        
+          
+        public function deleteOrder(){
+            if(isset($_POST['cancelBtn'])){
+                $menuName=$_POST['menuName'];    
+                $connection =$this->openConnection(); 
+                $statement=$connection->prepare("DELETE FROM  order_table  WHERE menuName=$menuName");
+                $statement->execute();
+            }
+        }
+        public function getCategories(){
+            $connection =$this->openConnection(); 
+            $statement=$connection->prepare("SELECT category FROM menu WHERE deleteAt is NULL GROUP BY category ");
+            $statement->execute();
+            $categories = $statement->fetchAll();
+            foreach($categories as $category) 
+                {  
+                echo' <a class="dropdown-item dropdownBtn" href="#" >'.$category['category'].'</a>';
+            }
+        }
     
+    
+
          public function logout(){
             if(isset($_POST['logout'])){
                 session_start();
