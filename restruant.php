@@ -134,7 +134,7 @@
              <form method="post">
              <input type="hidden" name="id"value="'.$item['menuID'].'">
              <!-- Edit Menu Modal -->
-            <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade editModal"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -145,19 +145,20 @@
                             </div>
                             <div class="modal-body">
                                 <form method="post">
+                                <input type="hidden" name="ID"value="'.$item['menuID'].'">
                                 <div class="form-group input-group-lg">
                                     <label for="exampleInputEmail1">Category</label>
-                                    <input type="text" class="form-control"name="category" aria-label="Large" placeholder="'.$item['category'].'">
+                                    <input type="text" class="form-control"name="newCategory" aria-label="Large" placeholder="'.$item['category'].'">
                                 </div>
                                 <div class="form-group input-group-lg">
                                     <label for="exampleInputEmail1">Menu Name</label>
-                                    <input type="text" class="form-control" name="menuName"aria-label="Large" placeholder="'.$item['menuName'].'">
+                                    <input type="text" class="form-control" name="newMenuName"aria-label="Large" placeholder="'.$item['menuName'].'">
                                 </div>
                                 <div class="form-group input-group-lg">
                                     <label for="exampleInputEmail1">Price</label>
-                                    <input type="number" class="form-control" name="price"aria-label="Large"placeholder="'.$item['price'].'" >
+                                    <input type="number" class="form-control" name="newPrice"aria-label="Large" placeholder="'.$item['price'].'" >
                                 </div>
-                        </div>
+                           </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                                 <button type="submit"  name="editMenuBtn"class="btn btn-primary">Submit</button>
@@ -166,7 +167,7 @@
                         </div>
                 </div>
             </div>
-             <button class="btn btn-info"data-toggle="modal" data-target="#editModal">Edit</button>
+             <button class="btn btn-info  editBtn">Edit</button>
              <button type="submit"class="btn btn-danger" name="deleteBtn">Delete</button>
             </form>
              </td>
@@ -196,7 +197,55 @@
                 $statement->execute([$deletedAt]);
             }
         }
+
+        public function updateMenu(){
+            if(isset($_POST['editMenuBtn'])){
+                $updatedAt = date('Y-m-d H:i:s');
+                $id=$_POST['ID']; 
+                $newCategory=$_POST['newCategory']; 
+                $newMenuName=$_POST['newMenuName'];   
+                $newPrice= intVal($_POST['newPrice']); 
+                $connection =$this->openConnection(); 
+                $statement=$connection->prepare("UPDATE menu  SET  category=?, menuName=?,price=?,updatedAt=?  WHERE menuID=$id");
+                $statement->execute([$newCategory,$newMenuName,$newPrice,$updatedAt]);
+               
+            }
+        }
        
+
+        public function dispOrderT1(){
+            $connection =$this->openConnection(); 
+            $statement=$connection->prepare("SELECT * FROM order_table  WHERE tableNo=1");
+            $statement->execute();
+            $items = $statement->fetchAll();
+            foreach($items as $item) 
+         {  
+         echo'  <tr>
+         <td>
+            '.$item['menuName'].'
+         </td>
+         <td>
+            '.$item['price'].'
+         </td>
+         <td>
+         '.$item['price'].'
+         </td>
+         <td>
+           <p class="subtotal"></p>
+         </td>
+         <td>
+         '.$item['status'].'
+         </td>
+         <td>
+         <form method="post">
+         <button class="btn btn-success">deliver</button>
+         <button type="submit"class="btn btn-danger" name="deleteBtn">Delete</button>
+        </form>
+         </td>
+         </tr>';
+         }
+    }
+    
          public function logout(){
             if(isset($_POST['logout'])){
                 session_start();
@@ -210,4 +259,4 @@
   
     
     
-?> 
+?>

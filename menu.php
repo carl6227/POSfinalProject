@@ -3,6 +3,7 @@ require_once('navs.php');
 require_once('restruant.php');
 $myRestruant->addMenu();
 $myRestruant->deleteMenu();
+$myRestruant->updateMenu();
 ?>
 
 <div class="container">
@@ -68,3 +69,9 @@ $myRestruant->deleteMenu();
 </div>
 
 
+<script>
+$('.editBtn').on('click',function(){
+$(this).prev().children().first().next().modal('show');
+})
+
+</script>

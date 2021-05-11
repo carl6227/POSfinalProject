@@ -10,10 +10,17 @@
     <meta name="author" content="">
 
     <title>SB Admin 2 - Dashboard</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+    </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+    </script>
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
@@ -42,28 +49,40 @@
             </a>
             <!-- Divider -->
             <hr class="sidebar-divider">
-            <!-- Nav Item - Charts -->
-            <li class="nav-item">
-                <a class="nav-link" href="index.php">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Dashboard</span></a>
-            </li>
-
             <!-- Nav Item - Tables -->
             <li class="nav-item">
-                <a class="nav-link" href="menu.php">
+                <a class="nav-link" href="table1.php">
                     <i class="fas fa-fw fa-table"></i>
-                    <span>Menu</span></a>
+                    <span>Table no.1</span></a>
             </li>
-
             <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
-
-            <!-- Sidebar Toggler (Sidebar) -->
-            <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div>
-
+            <hr class="sidebar-divider">
+            <li class="nav-item">
+                <a class="nav-link" href="table2.php">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Table no.2</span></a>
+            </li>
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+            <li class="nav-item">
+                <a class="nav-link" href="table3.php">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Table no.3</span></a>
+            </li>
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+            <li class="nav-item">
+                <a class="nav-link" href="table4.php">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Table no.4</span></a>
+            </li>
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+            <li class="nav-item">
+                <a class="nav-link" href="table5.php">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Table no.5</span></a>
+            </li>
         </ul>
         <!-- End of Sidebar -->
 
@@ -81,7 +100,7 @@
                         <i class="fa fa-bars"></i>
                     </button>
 
-                  
+
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
 
@@ -119,7 +138,7 @@
                             </a>
                         </li>
 
-                       
+
 
                         <div class="topbar-divider d-none d-sm-block"></div>
 
@@ -128,8 +147,7 @@
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
-                                <img class="img-profile rounded-circle"
-                                    src="img/undraw_profile.svg">
+                                <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
