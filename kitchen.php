@@ -24,49 +24,8 @@
 <!-- End of Main Content -->
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script type="text/javascript">
- $(document).ready(function() {
-
-           displayOrders();//calling the displayOrders function.
-
-
-            function displayOrders(){//defining  the displayOrders function.
-            $.ajax({
-                type: 'post',
-                data: {
-                    display:""
-                },
-                url: 'ajax_request.php',
-                success: function(returnData) {
-                    $(".ordersWrapper").html(returnData);
-                }
-            });
-        }
-
-
-
-
-    $(document).on('click', '.confirmBtn', function() {
-        
-                    var getOrderID = $(this).prev().val();
-                    $.ajax({
-                        type: 'post',
-                        data: {
-                            confirm_item_id: getOrderID
-                        },
-                        url: 'ajax_request.php',
-                        success: function(returnData) {
-                            if (returnData == "YES") {
-                                displayOrders();
-                                alert('confirmed successfully')
-                            } else {
-                                alert("can't update the row")
-                            }
-                        }
-                    });
-                })
- });
-
+<script type="text/javascript" src="git ajax_request.js">
+ 
 </script>
 
 </body>

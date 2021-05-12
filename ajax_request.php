@@ -60,7 +60,7 @@
 	
     if(isset($_POST['table_number']) && $_POST['table_number'] !='')
 	{
-		$table_number = $_POST['table_number'];
+		$table_number = intVal($_POST['table_number']);
 		$sql = "SELECT * FROM order_table where tableNo=$table_number";
 		$rs = mysqli_query($conn,$sql);
 		$numRows = mysqli_num_rows($rs);

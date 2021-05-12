@@ -1,9 +1,7 @@
 <?php
 require_once('waiterNavs.php');
 require_once('restruant.php');
-if ($_POST['menuName']!=""){
-    $myRestruant->addOrder();
-    }
+$myRestruant->addOrder();
 $myRestruant->deleteOrder();
 ?>
 
@@ -48,7 +46,7 @@ $myRestruant->deleteOrder();
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="#"method="post">
+                    <form action="#" method="post">
                         <div class="input-group input-group-lg mb-4">
                             <input type="text" id="categoriesDropDown" name="category" class="form-control"
                                 aria-label="Text input with dropdown button">
@@ -91,97 +89,5 @@ $myRestruant->deleteOrder();
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script type="text/javascript">
-    $(document).ready(function() {
-        //scripts for displaying the orders
-            displayOrders();
-            function displayOrders(){
-            var tableNumber = 1;
-            $.ajax({
-                type: 'post',
-                data: {
-                    table_number: tableNumber
-                },
-                url: 'ajax_request.php',
-                success: function(returnData) {
-                    $("tbody").html(returnData);
 
-
-                }
-            });
-        }
-        //delete order when cancelBtn is clicked
-        $(document).on('click', '.cancelBtn', function() {
-            var getmenuID = $(this).prev().val();
-            var element = $(this).parent().parent();
-            $.ajax({
-                type: 'post',
-                data: {
-                    item_id: getmenuID
-                },
-                url: 'ajax_request.php',
-                success: function(returnData) {
-                    if (returnData == "YES") {
-                        element.fadeOut().remove();
-                    } else {
-                        alert("can't delete the row")
-                    }
-                }
-            });
-        })
-
-        // update status when the deliverBtn is click
-        $(document).on('click', '.deliverBtn', function() {
-                    var getmenuID = $(this).next().val();
-                    var statusRow = $(this).parent().prev();
-
-                    $.ajax({
-                        type: 'post',
-                        data: {
-                            update_item_id: getmenuID
-                        },
-                        url: 'ajax_request.php',
-                        success: function(returnData) {
-                            if (returnData == "YES") {
-                                displayOrders();
-                               $(this).next().next().attr('disabled','disabled')
-                            } else {
-                                alert("can't update the row")
-                            }
-                        }
-                    });
-                })
-
-
-
-
-
-
-
-        //script for the dropdown on categories and its corresponding items
-        $('.dropdownBtn').on("click", function() {
-            $(this).parent().parent().prev().val($(this).text());
-            var getcategoryName = $(this).parent().parent().prev().val();
-            if (getcategoryName != '') {
-                $.ajax({
-                    type: 'post',
-                    data: {
-                        category_name: getcategoryName
-                    },
-                    url: 'ajax_request.php',
-                    success: function(returnData) {
-                        $(".itemData").html(returnData);
-                        $('.dropdownItemBtn').on("click", function() {
-
-                            $(this).parent().parent().prev().val($(this).text());
-
-                        })
-                    }
-                });
-            }
-        })
-
-
-
-    })
-    </script>
+    <script type="text/javascript" src="ajax_request.js"></script>
