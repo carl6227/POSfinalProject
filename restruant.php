@@ -55,7 +55,7 @@
         public function login(){
         
            if(isset($_POST['login'])){
-               
+                //condition added
                 $email=$_POST['email'];
                 $password=$_POST['password'];
                 $connection =$this->openConnection();
