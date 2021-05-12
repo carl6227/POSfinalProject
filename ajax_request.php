@@ -12,6 +12,15 @@
 		die(mysqli_error());
 	}
  
+	
+   
+
+
+
+
+
+
+
     //display order for all table
     if(isset($_POST['table_number']) && $_POST['table_number'] !='')
 	{
@@ -31,7 +40,7 @@
 				echo'  <tr>
             
                 <td>
-                    '.$item['menuName'].'
+                  <p>  '.$item['menuName'].'</p>
                 </td>
                 <td class="price">
                     '.$item['price'].'
@@ -46,24 +55,44 @@
                 '.$item['status'].'
                 </td>
                 <td>
-                <button class="btn btn-success">deliver</button>
-                <button type="button" class="btn btn-danger cancelBtn">Cancel</button>
+				<button class="btn btn-success deliverBtn " disabled>deliver</button>
+				<input type="hidden" value="'.$item['order_id'].'">
+                <button type="button" class="btn btn-danger cancelBtn" >Cancel</button>
                 </td>
                 </tr>';
 			}
 			
 		}
 		
-    }//end for display orders
+	}//end for display orders
+	
 
-    if(isset($_POST['category_name']) && $_POST['category_name'] !='')
+	// delete order 
+	if(isset($_POST['item_id']))
 	{
-		$categoryName = $_POST['category_name'];
-		$sql = "select menuName from menu where category= '".$categoryName."' order by menuName ASC";
-		$rs = mysqli_query($conn,$sql);
-        $numRows = mysqli_num_rows($rs);
+		$menuID = $_POST['item_id'];
+		$sql = "delete from  order_table where order_id = '".$menuID."'";
+		if ($rs = mysqli_query($conn,$sql)){
+			echo "YES";
+		}else{
+
+			
+		}
+		
     }
-   
+
+	// update status of the order
+	if(isset($_POST['update_item_id']))
+	{
+		$menuID = $_POST['update_item_id'];
+		$sql = "update   order_table set status='delivered' where order_id = '".$menuID."'";
+		if ($rs = mysqli_query($conn,$sql)){
+			echo "YES";
+		}else{	
+			echo "NO";
+		}
+		
+    }
 
 
 

@@ -195,7 +195,8 @@
 
         
         public function addOrder(){
-            if(isset($_POST['addOrder'])){
+            if(isset($_POST['addOrder'])&& $_POST['menuName']!=" "){
+                 unset($_POST['addOrder']);
                  $category=$_POST['category'];
                  $menuName=$_POST['menuName'];
                  $quantity=$_POST['quantity'];
@@ -209,6 +210,7 @@
                  $subtotal=intVal($quantity)*intVal($price);
                  $statement=$connection->prepare("INSERT INTO  order_table(category,menuName,quantity,status,price,tableNo,subtotal) VALUES (?,?,?,?,?,?,?)");
                  $statement->execute([$category, $menuName,$quantity, $status, $price,$tableNo,$subtotal]);
+               
             }
          }
         
