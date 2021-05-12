@@ -66,7 +66,6 @@
                 $_SESSION['username']=$user['username'];
                 unset($_SESSION['errorMsg']);
                 header('location:home.php');
-              
                 }else{
                   
                  $_SESSION['errorMsg']="* username or password is invalid";
