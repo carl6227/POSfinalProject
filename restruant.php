@@ -95,7 +95,6 @@
                 $connection =$this->openConnection(); 
                 $statement=$connection->prepare("SELECT * FROM menu  WHERE deleteAt is  NULL");
                 $statement->execute();
-                $subtotal=$statement->fetch();
                 $items = $statement->fetchAll();
                 foreach($items as $item) 
              {  
@@ -195,7 +194,7 @@
 
         
         public function addOrder(){
-            if(isset($_POST['addOrder'])&& $_POST['menuName']!=" "){
+            if(isset($_POST['addOrder'])&& $_POST['menuName']!=""){
                  unset($_POST['addOrder']);
                  $category=$_POST['category'];
                  $menuName=$_POST['menuName'];
@@ -223,6 +222,8 @@
                 $statement->execute();
             }
         }
+
+           
         public function getCategories(){
             $connection =$this->openConnection(); 
             $statement=$connection->prepare("SELECT category FROM menu WHERE deleteAt is NULL GROUP BY category ");

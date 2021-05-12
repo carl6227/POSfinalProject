@@ -1,7 +1,9 @@
 <?php
 require_once('waiterNavs.php');
 require_once('restruant.php');
-$myRestruant->addOrder();
+if ($_POST['menuName']!=""){
+    $myRestruant->addOrder();
+    }
 $myRestruant->deleteOrder();
 ?>
 
@@ -46,7 +48,7 @@ $myRestruant->deleteOrder();
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form method="post">
+                    <form action="#"method="post">
                         <div class="input-group input-group-lg mb-4">
                             <input type="text" id="categoriesDropDown" name="category" class="form-control"
                                 aria-label="Text input with dropdown button">
@@ -92,22 +94,22 @@ $myRestruant->deleteOrder();
     <script type="text/javascript">
     $(document).ready(function() {
         //scripts for displaying the orders
-        displayOrders();
-        function displayOrders(){
-        var tableNumber = 1;
-        $.ajax({
-            type: 'post',
-            data: {
-                table_number: tableNumber
-            },
-            url: 'ajax_request.php',
-            success: function(returnData) {
-                $("tbody").html(returnData);
+            displayOrders();
+            function displayOrders(){
+            var tableNumber = 1;
+            $.ajax({
+                type: 'post',
+                data: {
+                    table_number: tableNumber
+                },
+                url: 'ajax_request.php',
+                success: function(returnData) {
+                    $("tbody").html(returnData);
 
 
-            }
-        });
-       }
+                }
+            });
+        }
         //delete order when cancelBtn is clicked
         $(document).on('click', '.cancelBtn', function() {
             var getmenuID = $(this).prev().val();
