@@ -1,18 +1,23 @@
 <?php 
-session_start();
-    include_once('restruant.php');
-    $myrestaurant = new restaurant();
-    $myrestaurant->logout();
+session_start(); //start of a session
+    include_once('restruant.php'); // including the restruant.php file
+    $myrestaurant = new restaurant(); // creating a restaurant object
+    $myrestaurant->logout(); // calling logout function 
     
-    $user=$_SESSION['username'];
+    $user=$_SESSION['username']; // assign the session into user variable
     
+    // checking if var user session is directly set
     if($user==""){
         header('location:login.php');
     }
-    
-
 ?>
-<?php require_once('navs.php')?>
+
+
+<?php 
+    require_once('navs.php')
+?>
+
+
 <!-- Begin Page Content -->
 <div class="container-fluid">
 

@@ -1,11 +1,12 @@
 <?php 
-session_start();
-    include_once('restruant.php');
-    $myrestaurant = new restaurant();
-    $myrestaurant->logout();
-    
+ session_start(); // starting session
+    include_once('restruant.php'); 
+    $myrestaurant = new restaurant(); //creating an object 
+    $myrestaurant->logout(); //calling the logout function
+    // assign the the session username to the variable user
     $user=$_SESSION['username'];
-    echo $_SESSION['username'];
+ 
+    // checking if the session is set if not it will redirected to login
     if($user==""){
         header('location:login.php');
     }
