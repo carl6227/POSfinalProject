@@ -3,17 +3,20 @@
 
     class restaurant
     {
-        private $server = "mysql:host=remotemysql.com;dbname=Ca4Rze9t7d";
-        private $user = "Ca4Rze9t7d";
-        private $password = "3Lzjt7JmOu";
+        // Initializing varaibles to be used in connecting to the online database using phpmyadmin
+        private $server = "mysql:host=remotemysql.com;dbname=Ca4Rze9t7d"; // server and db
+        private $user = "Ca4Rze9t7d";                                     // username
+        private $password = "3Lzjt7JmOu";                                 // password 
+
+        // making some options
         private $options = array(
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
         );
 
-        protected $connection;
+        protected $connection; // initalized variable connection
 
-        //connections
+        //Establishing connections 
         public function openConnection()
         {
             try {
@@ -30,32 +33,17 @@
                 echo "Erro connection:" . $error->getMessage();
             }
         }
+
+        // Function to close connection
         public function closeConnection()
         {
             $this->$connection= null;
         }
 
-        public function getUsers()
-        {
-            $connection = $this->openConnection();
-            $statement = $connection->prepare("SELECT * FROM users");
-            $statement->execute();
-            $users = $statement->fetchAll();
-            $usersCount = $statement->rowCount();
-
-            if ($usersCount > 0) {
-                return $users;
-            } else {
-                return 0;
-            }
-        }//end of get users
-       
-       
-       
+        // login Function using session
         public function login(){
         
            if(isset($_POST['login'])){
-                //condition added
                 $email=$_POST['email'];
                 $password=$_POST['password'];
                 $connection =$this->openConnection();
@@ -66,6 +54,8 @@
                 if($total>0 ){
                 $_SESSION['username']=$user['fullName'];
                 unset($_SESSION['errorMsg']);
+
+                // checking the type of the user and redirecting to a specific page whether the user is in waiters page or at admin side.
                 if($user['type']==1){
                     header('location:index.php');
                 }else if($user['type']==0){
@@ -81,20 +71,6 @@
            }
           
         }//end of log in
-        public function signup(){
-            if(isset($_POST['signup'])){
-                 $username=$_POST['fullname'];
-                 $password=$_POST['password'];
-                 $email=$_POST['email'];
-                 $type=0;
-                 $connection =$this->openConnection();
-                 $statement=$connection->prepare("INSERT INTO  users(username,email,password,type) VALUES (?,?,?,?)");
-                 $statement->execute([$username,$email,$password,$type]);
-            }
-         }
-
-
-        
         
    //for admin functionalities
    //display all menu details
@@ -161,7 +137,8 @@
              }
         }
         
-
+        // ADMIN functionalities 
+        // Function to add menu.
         public function addMenu(){
             if(isset($_POST['addMenuBtn'])){
                 $dateAdded = date('Y-m-d H:i:s');
@@ -174,6 +151,7 @@
             }
         }
         
+        // Admin functionalities to delete menu 'Soft delete'
         public function deleteMenu(){
             if(isset($_POST['deleteBtn'])){
                 $deletedAt = date('Y-m-d H:i:s');
@@ -184,6 +162,7 @@
             }
         }
 
+        // Admin functionalities to update menu
         public function updateMenu(){
             if(isset($_POST['editMenuBtn'])){
                 $updatedAt = date('Y-m-d H:i:s');
@@ -198,8 +177,7 @@
             }
         }
        
-
-        
+        // Waiter functionalities to add ORDER
         public function addOrder(){
             if(isset($_POST['addOrder'])&& $_POST['menuName']!=""){
                  unset($_POST['addOrder']);
@@ -220,7 +198,7 @@
             }
          }
         
-          
+        // Waiter functionalities to delete order  
         public function deleteOrder(){
             if(isset($_POST['cancelBtn'])){
                 $menuName=$_POST['menuName'];    
@@ -230,7 +208,7 @@
             }
         }
 
-           
+        // Function to get all the categories of the menu and add it to the dropdown
         public function getCategories(){
             $connection =$this->openConnection(); 
             $statement=$connection->prepare("SELECT category FROM menu WHERE deleteAt is NULL GROUP BY category ");
@@ -242,8 +220,7 @@
             }
         }
     
-    
-
+        // ADMIN and WAITER logout function
          public function logout(){
             if(isset($_POST['logout'])){
                 session_start();
@@ -252,6 +229,7 @@
             }
          }
     }
-    $myRestruant = new restaurant();
+
+    $myRestruant = new restaurant(); // Creating object of the class
 
 ?>

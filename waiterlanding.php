@@ -1,4 +1,5 @@
 <?php 
+
 session_start();
     require_once('restruant.php');
    
@@ -6,6 +7,7 @@ session_start();
     
     $user=$_SESSION['username'];
    
+
     if($user==""){
         header('location:login.php');
     }
