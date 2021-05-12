@@ -1,7 +1,7 @@
 <?php
 
 
-    class myStore
+    class restaurant
     {
         private $server = "mysql:host=remotemysql.com;dbname=Ca4Rze9t7d";
         private $user = "Ca4Rze9t7d";
@@ -55,22 +55,29 @@
         public function login(){
         
            if(isset($_POST['login'])){
-                $username=$_POST['username'];
+               
+                $email=$_POST['email'];
                 $password=$_POST['password'];
                 $connection =$this->openConnection();
-                $statement=$connection->prepare("SELECT * FROM users WHERE email=? AND password=?");
-                $statement->execute([$username,$password]);
+                $statement=$connection->prepare("SELECT * FROM users_table WHERE email=? AND password=?");
+                $statement->execute([$email,$password]);
                 $user= $statement->fetch();
                 $total= $statement->rowCount();
-                if($total>0){
-                $_SESSION['username']=$user['username'];
+                if($total>0 ){
+                $_SESSION['username']=$user['fullName'];
                 unset($_SESSION['errorMsg']);
-                header('location:home.php');
+                if($user['type']==1){
+                    header('location:index.php');
+                }else if($user['type']==0){
+                    header('location:waiterlanding.php');
+                }
+               
               
                 }else{
-                  
-                 $_SESSION['errorMsg']="* username or password is invalid";
+                    echo "login failed";
+                    $_SESSION['errorMsg']="* username or password is invalid";
                 }
+                //print_r($user[0]);
            }
           
         }//end of log in
@@ -245,9 +252,6 @@
             }
          }
     }
-    $myRestruant = new myStore();
-   
-  
-    
-    
+    $myRestruant = new restaurant();
+
 ?>
