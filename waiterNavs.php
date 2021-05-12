@@ -51,39 +51,28 @@
             <!-- Divider -->
             <hr class="sidebar-divider">
             <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link" href="table1.php">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Table no.1</span></a>
-            </li>
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-            <li class="nav-item">
-                <a class="nav-link" href="table2.php">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Table no.2</span></a>
-            </li>
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-            <li class="nav-item">
-                <a class="nav-link" href="table3.php">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Table no.3</span></a>
-            </li>
-            <!-- Divider -->
-            <hr class="sidebar-divider">
+
             <li class="nav-item">
                 <a class="nav-link" href="table4.php">
                     <i class="fas fa-fw fa-table"></i>
-                    <span>Table no.4</span></a>
+                    <span>Menu</span></a>
             </li>
-            <!-- Divider -->
-            <hr class="sidebar-divider">
             <li class="nav-item">
-                <a class="nav-link" href="table5.php">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Table no.5</span></a>
-            </li>
+              
+              <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+                      aria-expanded="true" aria-controls="collapsePages">
+                      <i class="fas fa-fw fa-folder"></i>
+                      <span>Tables</span>
+                  </a>
+                  <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                      <div class="bg-white py-2 collapse-inner rounded">
+                          <a type="button" class="collapse-item table" name="1" >Table 1</a>
+                          <a  type="button" class="collapse-item table" name="2">Table 2</a>
+                          <a  type="button" class="collapse-item table" name="3">Table 3</a>
+                          <a  type="button" class="collapse-item table" name="4">Table 4</a>
+                          <a  type="button" class="collapse-item table" name="5">Table 5</a>
+                      </div>
+                  </div>
         </ul>
         <!-- End of Sidebar -->
 
@@ -104,12 +93,6 @@
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
-
-                    
-                           
-
-
-
 
                       
                         <!-- Nav Item - User Information -->

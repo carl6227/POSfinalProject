@@ -14,7 +14,7 @@
  
 	
     //display order for all table
-    if(isset($_POST['table_number']) && $_POST['table_number'] !='')
+    if(isset($_POST['table_number']) && $_POST['table_number'] !=0)
 	{
 		$table_number = $_POST['table_number'];
 		$sql = "SELECT * FROM order_table where tableNo=$table_number";
