@@ -66,7 +66,13 @@
                 if($total>0 ){
                 $_SESSION['username']=$user['fullName'];
                 unset($_SESSION['errorMsg']);
-                header('location:home.php');
+                if($user['type']==1){
+                    header('location:index.php');
+                }else if($user['type']==0){
+                    header('location:waiterlanding.php');
+                }
+               
+              
                 }else{
                     echo "login failed";
                     $_SESSION['errorMsg']="* username or password is invalid";

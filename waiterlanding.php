@@ -5,7 +5,7 @@ session_start();
     $myrestaurant->logout();
     
     $user=$_SESSION['username'];
-    echo $_SESSION['username'];
+   
     if($user==""){
         header('location:login.php');
     }
