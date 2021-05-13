@@ -15,7 +15,6 @@ $_SESSION['errorMsg']="";
 body {
     display: table-cell;
     vertical-align: middle;
-    background-color: #e0f2f1 !important;
 }
 
 html {
