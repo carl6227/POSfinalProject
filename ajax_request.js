@@ -26,6 +26,21 @@ $(document).ready(function () {
         })
     }
 
+
+    $('.table').on('click',function(){
+        var tableNumber = parseInt($(this).attr('name'));
+        console.log($(this).parent().parent().parent().parent().nextUntil('div.fade'));
+    $.ajax({
+        type: "post",
+        data: {
+            table_number: tableNumber,
+        },
+        url: "restruant.php",
+        success: function (returnData) {
+            $("tbody").html(returnData);
+        },
+        });
+    })
   
   //checking the value of the status of the ordered item
   

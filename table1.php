@@ -46,7 +46,7 @@ $myRestruant->deleteOrder();
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="#"method="post">
+                    <form action="#" method="post">
                         <div class="input-group input-group-lg mb-4">
                             <input type="text" id="categoriesDropDown" name="category" class="form-control"
                                 aria-label="Text input with dropdown button">
@@ -89,6 +89,5 @@ $myRestruant->deleteOrder();
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script type="text/javascript" src="ajax_request.js">
-    
-    </script>
+
+    <script type="text/javascript" src="ajax_request.js"></script>
