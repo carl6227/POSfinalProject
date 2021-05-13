@@ -177,14 +177,15 @@
         }
        
         // Waiter functionalities to add ORDER
+       
         public function addOrder(){
-            if(isset($_POST['addOrder'])&& $_POST['tablenum']!=0){
-                 unset($_POST['addOrder']);
-                 $category=$_POST['category'];
-                 $menuName=$_POST['menuName'];
-                 $quantity=$_POST['quantity'];
-                 $status="pending";
-                 $tableNo=intVal($_POST['tablenum']);
+                
+            if(isset($_POST['addOrder'])){
+                $category=$_POST['category'];
+                $menuName=$_POST['menuName'];
+                $quantity=$_POST['quantity'];
+                $status="pending";
+                $tableNo=intVal($_POST['tablenum']);
                  $connection =$this->openConnection();
                  $getPriceStatement=$connection->prepare("SELECT price FROM menu  WHERE menuName='$menuName'");
                  $getPriceStatement->execute();
@@ -193,10 +194,10 @@
                  $subtotal=intVal($quantity)*intVal($price);
                  $statement=$connection->prepare("INSERT INTO  order_table(category,menuName,quantity,status,price,tableNo,subtotal) VALUES (?,?,?,?,?,?,?)");
                  $statement->execute([$category, $menuName,$quantity, $status, $price,$tableNo,$subtotal]);
-               
             }
+           
          }
-        
+         
         // Waiter functionalities to delete order  
         public function deleteOrder(){
             if(isset($_POST['cancelBtn'])){

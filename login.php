@@ -2,6 +2,7 @@
 session_start();
 $_SESSION['username']="";
 $_SESSION['errorMsg']="";
+$_SESSION['isAdded']=false;
 
     include_once('restruant.php');
     include_once('header.php');
