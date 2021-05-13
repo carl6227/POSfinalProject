@@ -24,14 +24,16 @@ session_start();
     <div class="container">
 
         <div class="row">
+            
+                <?php $myRestruant->dispMenuForWaiter();?>
+       
+            <div class="container-fluid tableWrapper" style="display:none">
 
-            <div class="container-fluid">
-
-                <button style="display:none"class="btn btn-primary float-right mb-4 addBtn" data-toggle="modal" data-target="#addOrderModal"><i
+                <button class="btn btn-primary float-right mb-4 addBtn" data-toggle="modal" data-target="#addOrderModal"><i
                         class="fa fa-plus"></i> Add Order</button>
             </div>
 
-            <table class="table table-hover" style="display:none">
+            <table class="table table-hover tableWrapper" >
                 <thead>
                     <tr>
                         <th>Menu Name</th>

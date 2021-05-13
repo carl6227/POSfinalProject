@@ -1,16 +1,24 @@
 $(document).ready(function() {
-
-
-    $('table').hide();
-    $('.addBtn').hide();
+  
+ 
+    $('.tableWrapper').hide();
 
     //scripts for displaying the orders
     displaySpecificOrders();
 
+//hide the table when  click and show the orders
+    $('.menuBtn').on('click',function(){
+        $('.tableWrapper').hide();
+        $('.orderWrapper').show();
+        
+    });
+
+
+    $('#dataTable').DataTable();
     function displaySpecificOrders() { //defining a function that display a specific base on the number of its table
         $('.table').on('click', function() {
-            $('table').show();
-            $('.addBtn').show();
+            $('.tableWrapper').show();
+            $('.orderWrapper').hide();
             var tableNumber = parseInt($(this).attr('name'));
             $.ajax({
                 type: "post",
@@ -20,6 +28,7 @@ $(document).ready(function() {
                 url: "ajax_request.php",
                 success: function(returnData) {
                     $("tbody").html(returnData);
+                    $('#dataTable').DataTable();
                 },
             });
         })

@@ -136,6 +136,35 @@
              }
         }
         
+        public function dispMenuForWaiter(){
+            $connection =$this->openConnection(); 
+            $statement=$connection->prepare("SELECT * FROM menu  WHERE deleteAt is  NULL");
+            $statement->execute();
+            $items = $statement->fetchAll();
+            foreach($items as $item) 
+          {  
+           echo '
+            <div class="col-xl-4 col-md-6 mb-4 orderWrapper" >
+                    <div class="card border-left-primary shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="container-fluid">
+                                    <img src="'.$item['img'].'" alt="..." class="img-thumbnail" style="width:">
+                                </div>`
+                                <div class="col mr-2 mt-3">
+                                    <div class="text-lg font-weight-bold text-primary text-center text-uppercase mb-1">
+                                        '.$item['menuName'].'</div>
+                                    <div class="mb-0 font-weight-bold text-md text-center text-gray-800">PHP '.$item['price'].'
+                                    </div>
+                                </div>
+                          </div>
+                     </div>
+                     </div> 
+            </div>';
+
+
+          }
+        }
         // ADMIN functionalities 
         // Function to add menu.
         public function addMenu(){
@@ -197,6 +226,8 @@
             }
            
          }
+
+
          
         // Waiter functionalities to delete order  
         public function deleteOrder(){
