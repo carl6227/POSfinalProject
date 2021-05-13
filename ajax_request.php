@@ -63,7 +63,7 @@
 
     // for diplaying all orders to kitchen page
 	   if(isset($_POST['display'])){
-		$sql = "SELECT * FROM order_table ";
+		$sql = "SELECT * FROM order_table WHERE status !='delivered'";
 		$rs = mysqli_query($conn,$sql);
 		$numRows = mysqli_num_rows($rs);
 		
@@ -123,7 +123,7 @@
 
 
 	// delete order 
-	if( isset($_POST['table_number_cancel']) && isset($_POST['item_id']))
+	if( isset($_POST['item_id']))
 	{
 		$table_number=isset($_POST['item_id']);
 		$menuID = $_POST['item_id'];

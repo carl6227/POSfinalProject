@@ -13,7 +13,6 @@ session_start();
     }
     require_once('WaiterNavs.php');
     require_once('waiterNavs.php');
-
     $myRestruant->addOrder();
     $myRestruant->deleteOrder();
     
