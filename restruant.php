@@ -64,7 +64,6 @@
                
               
                 }else{
-                    echo "login failed";
                     $_SESSION['errorMsg']="* username or password is invalid";
                 }
                 //print_r($user[0]);
