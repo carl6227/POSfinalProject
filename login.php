@@ -133,7 +133,7 @@ input:focus {
                     <div class="input-group col-lg-12 mb-4">
                         <div class="input-group-prepend">
                             <span class="input-group-text bg-light text-dark  px-4 border-md border-right-0">
-                                <i class="fas fa-key text-primary" style=" font-size:25px;padding:10px;"></i>
+                                <i class="fa fa-key text-primary" style=" font-size:25px;padding:10px;"></i>
                             </span>
                         </div>
                         <input id="name" type="password" name="password" placeholder="Password"
