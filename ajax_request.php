@@ -13,7 +13,7 @@
 	}
  
 	
-    //display order for all table
+    //display order for on specific  table
     if(isset($_POST['table_number']) && $_POST['table_number'] !=0)
 	{
 		$table_number = intVal($_POST['table_number']);
@@ -123,10 +123,11 @@
 
 
 	// delete order 
-	if(isset($_POST['item_id']))
+	if( isset($_POST['table_number_cancel']) && isset($_POST['item_id']))
 	{
+		$table_number=isset($_POST['item_id']);
 		$menuID = $_POST['item_id'];
-		$sql = "delete from  order_table where order_id = '".$menuID."'";
+		$sql = "delete from  order_table where order_id = '".$menuID."' and tableNo='".$table_number."'" ;
 		if ($rs = mysqli_query($conn,$sql)){
 			echo "YES";
 		}else{

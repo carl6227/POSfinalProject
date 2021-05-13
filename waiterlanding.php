@@ -28,11 +28,11 @@ session_start();
 
             <div class="container-fluid">
 
-                <button class="btn btn-primary float-right mb-4" data-toggle="modal" data-target="#addOrderModal"><i
+                <button style="display:none"class="btn btn-primary float-right mb-4 addBtn" data-toggle="modal" data-target="#addOrderModal"><i
                         class="fa fa-plus"></i> Add Order</button>
             </div>
 
-            <table class="table table-hover">
+            <table class="table table-hover" style="display:none">
                 <thead>
                     <tr>
                         <th>Menu Name</th>
@@ -44,7 +44,7 @@ session_start();
                     </tr>
                 </thead>
 
-                <tbody>
+                <tbody >
 
                 </tbody>
             </table>
