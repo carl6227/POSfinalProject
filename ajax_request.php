@@ -79,21 +79,27 @@
 					<div class="col-xl-3 col-md-6 mb-4">
 						<div class="card border-left-primary shadow h-100 py-2">
 							<div class="card-body">
-								<div class="row no-gutters align-items-center">
-								
-									<div class="col mr-2">
-									<small> '.$order['status'].'</small>
-										<div class="row">
-											<div class="col-sm-6 text-md font-weight-bold text-primary">
-												Table no.'.$order['tableNo'].'
-											</div>
-											<div class=" col-sm-6 text-md font-weight-bold text-info">
-											Quantity: '.$order['quantity'].'
-											</div>
-										</div>
-										<div class="text-md font-weight-bold text-dark text-uppercase text-center mb-1 mt-1">
+
+								<div style="margin-top:-15px;">
+									<small> '. '<i class="fa fa-thumb-tack text-danger" style="font-size:15px;"></i>'.' ' .$order['status'].'</small>
+								</div>
+
+								<div class="text-lg font-weight-bold text-dark text-uppercase text-center mb-1 mt-1">
 										'.$order['menuName'].'
+									 </div>
+								<div class="row no-gutters align-items-center">
+									 
+								<div class="col mr-2">
+									<div class="row">
+										<div class="col-sm-6 text-md font-weight-bold text-primary">
+										<i class="fa fa-table text-primary" style="font-size:15px;"></i> Table no.'.$order['tableNo'].'
 										</div>
+										<div class=" col-sm-6 text-md font-weight-bold text-info">
+										<i class="fas fa-sort-amount-up" aria-hidden="true"></i>
+										 Quantity: '.$order['quantity'].'
+										</div>
+									    </div>
+										
 										<hr class="border-primary">
 										<span>
 											<div class="text-center mt-3">
@@ -102,12 +108,11 @@
 												<button type="button" class="btn btn-outline-danger rejectBtn"><i class="fa fa-ban"style="font-size:20px"></i> Reject</button>
 											</div>
 										</span>
-									</div>
-
-								</div>
-							</div>
-					  </div>
-				  </div>';
+									 </div>
+								 </div>
+							 </div>
+					     </div>
+				    </div>';
 			}
 			
 		}
