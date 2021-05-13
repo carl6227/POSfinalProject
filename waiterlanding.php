@@ -64,6 +64,8 @@ session_start();
                     </div>
                     <div class="modal-body">
                         <form action="#" method="post">
+
+
                             <div class="input-group input-group-lg mb-4">
                                 <input type="text" id="categoriesDropDown" name="category" class="form-control"
                                     aria-label="Text input with dropdown button">
@@ -83,16 +85,28 @@ session_start();
                                     <button class="btn btn-outline-secondary dropdown-toggle" type="button"
                                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Items</button>
                                     <div class="dropdown-menu itemData">
-    
+
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-sm-6">
-                                <div class="input-group input-group-lg">
-                                    <input type="number" class="form-control" name="quantity" placeholder="quantity">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="input-group input-group-lg">
+                                        <input type="number" min="1" class="form-control" name="quantity"
+                                            placeholder="quantity">
 
+                                    </div>
+                                </div>
+                                <div class="col-sm-5">
+                                    <div class="input-group input-group-lg">
+                                      
+                                        <input type="number" min="1" max="5"class="form-control" name="tablenum"
+                                            placeholder="Table No.">
+
+                                    </div>
                                 </div>
                             </div>
+
 
                     </div>
                     <div class="modal-footer">
@@ -105,7 +119,7 @@ session_start();
             </div>
         </div>
 
-        
+
         <!-- /.container-fluid 
         -->
 
@@ -146,9 +160,9 @@ session_start();
     </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script type="text/javascript" src="ajax_request.js">
-    
-    </script>
+<script type="text/javascript" src="ajax_request.js">
+
+</script>
 
 
 </body>

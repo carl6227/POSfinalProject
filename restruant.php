@@ -179,13 +179,13 @@
        
         // Waiter functionalities to add ORDER
         public function addOrder(){
-            if(isset($_POST['addOrder'])&& $_POST['table_number']!=0){
+            if(isset($_POST['addOrder'])&& $_POST['tablenum']!=0){
                  unset($_POST['addOrder']);
                  $category=$_POST['category'];
                  $menuName=$_POST['menuName'];
                  $quantity=$_POST['quantity'];
                  $status="pending";
-                 $tableNo=intVal($_POST['table_number']);
+                 $tableNo=intVal($_POST['tablenum']);
                  $connection =$this->openConnection();
                  $getPriceStatement=$connection->prepare("SELECT price FROM menu  WHERE menuName='$menuName'");
                  $getPriceStatement->execute();
