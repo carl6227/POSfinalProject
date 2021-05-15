@@ -1,10 +1,6 @@
 <?php
-session_start();
+
  require_once('navForKitchen.php');
- $user=$_SESSION['username'];
-if($user!=""){
-    echo "<script> location.replace('waiterlanding.php'); </script>";  
-}
  
 ?>
 <!-- Begin Page Content -->

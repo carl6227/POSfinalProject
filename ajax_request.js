@@ -1,11 +1,6 @@
 $(document).ready(function() {
   
-    setInterval(function() {
-        displaySpecificOrders();
-        displayOrders();
-        alert('agdads');
-    }, 3000);
-
+ 
     $('.tableWrapper').hide();
 
     //scripts for displaying the orders
@@ -18,17 +13,16 @@ $(document).ready(function() {
         
     });
 
+    var tableNumber=0;
     $('.storeTable').on('click', function() {
-        var tableNumber = parseInt($(this).attr('name'));
+         tableNumber = parseInt($(this).attr('name'));
         $('.tableIndicator').text('Table Number: '+tableNumber.toString());
         $('.tableNo').val(tableNumber);
+        $('.tableWrapper').show();
+        $('.orderWrapper').hide();
     })
    
     function displaySpecificOrders() { //defining a function that display a specific base on the number of its table
-        $('.storeTable').on('click', function() {
-            $('.tableWrapper').show();
-            $('.orderWrapper').hide();
-            var tableNumber = parseInt($(this).attr('name'));
             $.ajax({
                 type: "post",
                 data: {
@@ -40,7 +34,7 @@ $(document).ready(function() {
                   
                 },
             });
-        })
+      
     }
 
 
@@ -166,5 +160,10 @@ $(document).ready(function() {
         });
     });
 
-   
+    setInterval(function() {
+        displaySpecificOrders();
+        displayOrders();
+       
+    }, 3000);
+
 });
