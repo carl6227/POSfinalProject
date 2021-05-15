@@ -3,8 +3,8 @@ $(document).ready(function() {
  
     $('.tableWrapper').hide();
 
-    //scripts for displaying the orders
-    displaySpecificOrders();
+    
+ 
 
     //hide the table when  click and show the orders
     $('.menuBtn').on('click',function(){
@@ -14,8 +14,10 @@ $(document).ready(function() {
     });
 
     var tableNumber=0;
+    var tableNumberForDeliveredItem=0;
     $('.storeTable').on('click', function() {
          tableNumber = parseInt($(this).attr('name'));
+         tableNumberForDeliveredItem=parseInt($(this).attr('name'));
         $('.tableIndicator').text('Table Number: '+tableNumber.toString());
         $('.tableNo').val(tableNumber);
         $('.tableWrapper').show();
@@ -34,8 +36,22 @@ $(document).ready(function() {
                   
                 },
             });
-      
     }
+
+
+    function displayTotalBill() { //defining a function that display the total bill of specific table 
+        $.ajax({
+            type: "post",
+            data: {
+                table_number_for_delivered_item: tableNumberForDeliveredItem,
+            },
+            url: "ajax_request.php",
+            success: function(returnData) {
+                $(".billWrapper").html(returnData);
+              
+            },
+        });
+}
 
 
     //delete order when cancelBtn is clicked
@@ -162,6 +178,7 @@ $(document).ready(function() {
 
     setInterval(function() {
         displaySpecificOrders();
+        displayTotalBill()
         displayOrders();
        
     }, 3000);

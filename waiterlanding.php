@@ -51,8 +51,12 @@ session_start();
                 </tbody>
             </table>
 
-
+         
+        <div class="container billWrapper">
+        
+        
         </div>
+    
         <!-- Add order Modal -->
         <div class="modal fade" id="addOrderModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
@@ -114,7 +118,7 @@ session_start();
         </div>
     </div>
 
-
+           
     <!-- /.container-fluid 
         -->
 

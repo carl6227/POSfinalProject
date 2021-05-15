@@ -35,13 +35,13 @@
                   <p>  '.$item['menuName'].'</p>
                 </td>
                 <td class="price">
-                    '.$item['price'].'
+				<b>Php</b> '.$item['price'].'
                 </td>
                 <td class="quantity">
                 '.$item['quantity'].'
                 </td>
                 <td>
-                '.$item['subtotal'].'
+               <b>Php</b> '.$item['subtotal'].'
                 </td>
                 <td>
                  <p class="status"> '.$item['status'].'</p>
@@ -51,11 +51,42 @@
 				<input type="hidden" value="'.$item['order_id'].'">
                 <button type="button" class="btn btn-outline-danger cancelBtn" >Cancel</button>
                 </td>
-                </tr>';
+				</tr>';
 			}
-			
 		}
+	}//end for display orders
+	
+    if(isset($_POST['table_number_for_delivered_item']) && $_POST['table_number_for_delivered_item'] !=0)
+	{
+		$table_number = intVal($_POST['table_number_for_delivered_item']);
+		$sql = "SELECT sum(subtotal) as totalBill FROM order_table where  tableNo=$table_number and status='delivered'";
+		$rs = mysqli_query($conn,$sql);
+		$numRows = mysqli_num_rows($rs);
 		
+		if($numRows == 0)
+		{
+			echo 'No order found';
+		}
+		else
+		{
+			while($bill = mysqli_fetch_assoc($rs))
+			{
+				echo'    <div class="card border-left-info shadow h-100 py-2 float-right">
+								<div class="card-body">
+										<div class="container-fluid">
+											<center>  <h4>Total Bill</h4></center>
+											<div class="input-group input-group-lg mb-4 mt-3">
+												<input type="text" disabled id="categoriesDropDown" value="Php '.$bill['totalBill'].'" name="category" class="form-control bg-secondary text-light"
+												aria-label="Text input with dropdown button">
+											</div>
+												<button class="btn btn-primary float-right"> Settle Payment</button>
+											</div>
+									</div>
+								</div> 
+		              </div>
+            ';
+			}
+		}
 	}//end for display orders
 	
    
