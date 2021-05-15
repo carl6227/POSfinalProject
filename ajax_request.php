@@ -79,7 +79,7 @@
 												<input type="text" disabled id="categoriesDropDown" value="Php '.$bill['totalBill'].'" name="category" class="form-control bg-secondary text-light"
 												aria-label="Text input with dropdown button">
 											</div>
-												<button class="btn btn-primary float-right"> Settle Payment</button>
+												<button class="btn btn-info float-right"> Settle Payment</button>
 											</div>
 									</div>
 								</div> 
@@ -108,7 +108,7 @@
 			{
 				echo' 
 					<div class="col-xl-3 col-md-6 mb-4">
-						<div class="card border-left-primary shadow h-100 py-2">
+						<div class="card border-left-info shadow h-100 py-2">
 							<div class="card-body">
 
 								<div style="margin-top:-15px;">

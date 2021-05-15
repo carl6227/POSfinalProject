@@ -30,7 +30,7 @@ session_start();
 
             <div class="container-fluid tableWrapper" style="display:none">
 
-                <button class="btn btn-primary float-right mb-4 addBtn" data-toggle="modal"
+                <button class="btn btn-info float-right mb-4 addBtn" data-toggle="modal"
                     data-target="#addOrderModal"><i class="fa fa-plus"></i> Add Order</button>
             </div>
 
@@ -51,10 +51,9 @@ session_start();
                 </tbody>
             </table>
 
-         
-        <div class="container billWrapper">
-        
-        
+         <!-- totalbill container -->
+        <div class="container billWrapper mb-5">
+    
         </div>
     
         <!-- Add order Modal -->

@@ -181,6 +181,6 @@ $(document).ready(function() {
         displayTotalBill()
         displayOrders();
        
-    }, 3000);
+    }, 1000);
 
 });
