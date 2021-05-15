@@ -66,11 +66,11 @@
                   </a>
                   <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                       <div class="bg-white py-2 collapse-inner rounded">
-                          <a type="button" class="collapse-item table" name="1" >Table 1</a>
-                          <a  type="button" class="collapse-item table" name="2">Table 2</a>
-                          <a  type="button" class="collapse-item table" name="3">Table 3</a>
-                          <a  type="button" class="collapse-item table" name="4">Table 4</a>
-                          <a  type="button" class="collapse-item table" name="5">Table 5</a>
+                          <a  type="button" class="collapse-item storeTable" name="1">Table 1</a>
+                          <a  type="button" class="collapse-item storeTable" name="2">Table 2</a>
+                          <a  type="button" class="collapse-item storeTable" name="3">Table 3</a>
+                          <a  type="button" class="collapse-item storeTable" name="4">Table 4</a>
+                          <a  type="button" class="collapse-item storeTable" name="5">Table 5</a>
                       </div>
                   </div>
         </ul>

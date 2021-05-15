@@ -1,22 +1,31 @@
 $(document).ready(function() {
   
- 
+    setInterval(function() {
+        displaySpecificOrders();
+        displayOrders();
+        alert('agdads');
+    }, 3000);
+
     $('.tableWrapper').hide();
 
     //scripts for displaying the orders
     displaySpecificOrders();
 
-//hide the table when  click and show the orders
+    //hide the table when  click and show the orders
     $('.menuBtn').on('click',function(){
         $('.tableWrapper').hide();
         $('.orderWrapper').show();
         
     });
 
-
-    $('#dataTable').DataTable();
+    $('.storeTable').on('click', function() {
+        var tableNumber = parseInt($(this).attr('name'));
+        $('.tableIndicator').text('Table Number: '+tableNumber.toString());
+        $('.tableNo').val(tableNumber);
+    })
+   
     function displaySpecificOrders() { //defining a function that display a specific base on the number of its table
-        $('.table').on('click', function() {
+        $('.storeTable').on('click', function() {
             $('.tableWrapper').show();
             $('.orderWrapper').hide();
             var tableNumber = parseInt($(this).attr('name'));
@@ -28,29 +37,24 @@ $(document).ready(function() {
                 url: "ajax_request.php",
                 success: function(returnData) {
                     $("tbody").html(returnData);
-                    $('#dataTable').DataTable();
+                  
                 },
             });
         })
     }
 
 
-
-
-
     //delete order when cancelBtn is clicked
-
     $(document).on("click", ".cancelBtn", function() {
         var getmenuID = $(this).prev().val();
         $.ajax({
             type: "post",
             data: {
-                item_id: getmenuID
+                item_id:getmenuID
             },
             url: "ajax_request.php",
             success: function(returnData) {
                 if (returnData == "YES") {
-                    alert('cancel success')
                 } else {
                     alert("can't delete the row");
                 }
@@ -162,8 +166,5 @@ $(document).ready(function() {
         });
     });
 
-    setInterval(function() {
-        displaySpecificOrders();
-        displayOrders();
-    }, 3000);
+   
 });

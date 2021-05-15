@@ -209,7 +209,7 @@
        
         public function addOrder(){
                 
-            if(isset($_POST['addOrder'])){
+            if(isset($_REQUEST['addOrder'])){
                 $category=$_POST['category'];
                 $menuName=$_POST['menuName'];
                 $quantity=$_POST['quantity'];
@@ -223,7 +223,10 @@
                  $subtotal=intVal($quantity)*intVal($price);
                  $statement=$connection->prepare("INSERT INTO  order_table(category,menuName,quantity,status,price,tableNo,subtotal) VALUES (?,?,?,?,?,?,?)");
                  $statement->execute([$category, $menuName,$quantity, $status, $price,$tableNo,$subtotal]);
+                 echo "<script> location.replace('example.php'); </script>";    
             }
+            
+              
            
          }
 

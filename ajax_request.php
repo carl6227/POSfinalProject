@@ -11,8 +11,8 @@
 	{
 		die(mysqli_error());
 	}
- 
 	
+
     //display order for on specific  table
     if(isset($_POST['table_number']) && $_POST['table_number'] !=0)
 	{
@@ -127,7 +127,7 @@
 	{
 		$table_number=isset($_POST['item_id']);
 		$menuID = $_POST['item_id'];
-		$sql = "delete from  order_table where order_id = '".$menuID."' and tableNo='".$table_number."'" ;
+		$sql = "delete from  order_table where order_id = '".$menuID."'" ;
 		if ($rs = mysqli_query($conn,$sql)){
 			echo "YES";
 		}else{
@@ -178,7 +178,7 @@
 
 
 // for the dropdown for adding an order 
-	if(isset($_POST['category_name']) && $_POST['category_name'] !='')
+	if(isset($_POST['category_name']))
 	{
 		$categoryName = $_POST['category_name'];
 		$sql = "select menuName from menu where category= '".$categoryName."' order by menuName ASC";
