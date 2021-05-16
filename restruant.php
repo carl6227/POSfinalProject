@@ -149,7 +149,7 @@
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <div class="container-fluid">
-                                    <img src="'.$item['img'].'" alt="..." class="img-thumbnail" style="width:">
+                                     <img src="'.$item['img'].'" alt="..." class="img-thumbnail" style="height:200px;">
                                 </div>`
                                 <div class="col mr-2 mt-3">
                                     <div class="text-lg font-weight-bold text-primary text-center text-uppercase mb-1">

@@ -1,41 +1,41 @@
 $(document).ready(function() {
-  
- 
+
+
     $('.tableWrapper').hide();
 
-    
- 
+
+
 
     //hide the table when  click and show the orders
-    $('.menuBtn').on('click',function(){
+    $('.menuBtn').on('click', function() {
         $('.tableWrapper').hide();
         $('.orderWrapper').show();
-        
+
     });
 
-    var tableNumber=0;
-    var tableNumberForDeliveredItem=0;
+    var tableNumber = 0;
+    var tableNumberForDeliveredItem = 0;
     $('.storeTable').on('click', function() {
-         tableNumber = parseInt($(this).attr('name'));
-         tableNumberForDeliveredItem=parseInt($(this).attr('name'));
-        $('.tableIndicator').text('Table Number: '+tableNumber.toString());
+        tableNumber = parseInt($(this).attr('name'));
+        tableNumberForDeliveredItem = parseInt($(this).attr('name'));
+        $('.tableIndicator').text('Table Number: ' + tableNumber.toString());
         $('.tableNo').val(tableNumber);
         $('.tableWrapper').show();
         $('.orderWrapper').hide();
     })
-   
+
     function displaySpecificOrders() { //defining a function that display a specific base on the number of its table
-            $.ajax({
-                type: "post",
-                data: {
-                    table_number: tableNumber,
-                },
-                url: "ajax_request.php",
-                success: function(returnData) {
-                    $("tbody").html(returnData);
-                  
-                },
-            });
+        $.ajax({
+            type: "post",
+            data: {
+                table_number: tableNumber,
+            },
+            url: "ajax_request.php",
+            success: function(returnData) {
+                $("tbody").html(returnData);
+
+            },
+        });
     }
 
 
@@ -48,10 +48,10 @@ $(document).ready(function() {
             url: "ajax_request.php",
             success: function(returnData) {
                 $(".billWrapper").html(returnData);
-              
+
             },
         });
-}
+    }
 
 
     //delete order when cancelBtn is clicked
@@ -60,12 +60,11 @@ $(document).ready(function() {
         $.ajax({
             type: "post",
             data: {
-                item_id:getmenuID
+                item_id: getmenuID
             },
             url: "ajax_request.php",
             success: function(returnData) {
-                if (returnData == "YES") {
-                } else {
+                if (returnData == "YES") {} else {
                     alert("can't delete the row");
                 }
             },
@@ -78,6 +77,7 @@ $(document).ready(function() {
         var statusRow = $(this).parent().prev().children().text();
         if (statusRow == "pending") {
             alert("Can't deliver, Order is still PENDING");
+
         } else {
 
             $.ajax({
@@ -180,7 +180,7 @@ $(document).ready(function() {
         displaySpecificOrders();
         displayTotalBill()
         displayOrders();
-       
+
     }, 1000);
 
 });
