@@ -30,8 +30,13 @@ session_start();
     <div class="container">
         <h2 class="tableIndicator">Menu</h2>
         <div class="row">
-
-            <?php $myRestruant->dispMenuForWaiter();?>
+            <div class="container-fluid orderWrapper" style="overflow-y:auto;height:600px;">
+            <div class="row">
+                <?php $myRestruant->dispMenuForWaiter();?>
+            </div>
+               
+            </div>
+            
 
             <div class="container-fluid tableWrapper" style="display:none">
 
@@ -62,7 +67,7 @@ session_start();
             </div>
             
          <!-- totalbill container -->
-        <div class="container billWrapper mb-5">
+        <div class="container billWrapper mb-5 ">
        
     </div>
    

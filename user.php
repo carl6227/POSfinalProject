@@ -6,7 +6,7 @@
 <div class="container-fluid">
 
     <div class="container">
-        <h2 class="tableIndicator mb-2">Welcome Dear Users</h2>
+        <h2 class="tableIndicator mb-2">Welcome our valued Customers!</h2>
         <div class="text-center text-info mt-3 mb-3">
             <h2>
                 Enjoy Our Dishes
