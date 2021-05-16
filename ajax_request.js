@@ -1,36 +1,60 @@
 $(document).ready(function() {
 
 
-    $('table').hide();
-    $('.addBtn').hide();
+    $('.tableWrapper').hide();
 
-    //scripts for displaying the orders
-    displaySpecificOrders();
+
+
+
+    //hide the table when  click and show the orders
+    $('.menuBtn').on('click', function() {
+        $('.tableWrapper').hide();
+        $('.orderWrapper').show();
+
+    });
+
+    var tableNumber = 0;
+    var tableNumberForDeliveredItem = 0;
+    $('.storeTable').on('click', function() {
+        tableNumber = parseInt($(this).attr('name'));
+        tableNumberForDeliveredItem = parseInt($(this).attr('name'));
+        $('.tableIndicator').text('Table Number: ' + tableNumber.toString());
+        $('.tableNo').val(tableNumber);
+        $('.tableWrapper').show();
+        $('.orderWrapper').hide();
+    })
 
     function displaySpecificOrders() { //defining a function that display a specific base on the number of its table
-        $('.table').on('click', function() {
-            $('table').show();
-            $('.addBtn').show();
-            var tableNumber = parseInt($(this).attr('name'));
-            $.ajax({
-                type: "post",
-                data: {
-                    table_number: tableNumber,
-                },
-                url: "ajax_request.php",
-                success: function(returnData) {
-                    $("tbody").html(returnData);
-                },
-            });
-        })
+        $.ajax({
+            type: "post",
+            data: {
+                table_number: tableNumber,
+            },
+            url: "ajax_request.php",
+            success: function(returnData) {
+                $("tbody").html(returnData);
+
+            },
+        });
     }
 
 
+    function displayTotalBill() { //defining a function that display the total bill of specific table 
+        $.ajax({
+            type: "post",
+            data: {
+                table_number_for_delivered_item: tableNumberForDeliveredItem,
+            },
+            url: "ajax_request.php",
+            success: function(returnData) {
+                $(".billWrapper").html(returnData);
 
+            },
+        });
+    }
 
 
     //delete order when cancelBtn is clicked
-
     $(document).on("click", ".cancelBtn", function() {
         var getmenuID = $(this).prev().val();
         $.ajax({
@@ -40,9 +64,7 @@ $(document).ready(function() {
             },
             url: "ajax_request.php",
             success: function(returnData) {
-                if (returnData == "YES") {
-                    alert('cancel success')
-                } else {
+                if (returnData == "YES") {} else {
                     alert("can't delete the row");
                 }
             },
@@ -55,6 +77,7 @@ $(document).ready(function() {
         var statusRow = $(this).parent().prev().children().text();
         if (statusRow == "pending") {
             alert("Can't deliver, Order is still PENDING");
+
         } else {
 
             $.ajax({
@@ -155,6 +178,9 @@ $(document).ready(function() {
 
     setInterval(function() {
         displaySpecificOrders();
+        displayTotalBill()
         displayOrders();
+
     }, 3000);
+
 });

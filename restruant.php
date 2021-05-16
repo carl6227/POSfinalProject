@@ -64,7 +64,6 @@
                
               
                 }else{
-                    echo "login failed";
                     $_SESSION['errorMsg']="* username or password is invalid";
                 }
                 //print_r($user[0]);
@@ -137,6 +136,35 @@
              }
         }
         
+        public function dispMenuForWaiter(){
+            $connection =$this->openConnection(); 
+            $statement=$connection->prepare("SELECT * FROM menu  WHERE deleteAt is  NULL");
+            $statement->execute();
+            $items = $statement->fetchAll();
+            foreach($items as $item) 
+          {  
+           echo '
+            <div class="col-xl-4 col-md-6 mb-4 orderWrapper" >
+                    <div class="card border-left-info shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="container-fluid">
+                                     <img src="'.$item['img'].'" alt="..." class="img-thumbnail" style="height:200px;">
+                                </div>`
+                                <div class="col mr-2 mt-3">
+                                    <div class="text-lg font-weight-bold text-primary text-center text-uppercase mb-1">
+                                        '.$item['menuName'].'</div>
+                                    <div class="mb-0 font-weight-bold text-md text-center text-gray-800">PHP '.$item['price'].'
+                                    </div>
+                                </div>
+                          </div>
+                     </div>
+                     </div> 
+            </div>';
+
+
+          }
+        }
         // ADMIN functionalities 
         // Function to add menu.
         public function addMenu(){
@@ -150,7 +178,6 @@
                 $statement->execute([$category,$menuName,$price,$dateAdded]);
             }
         }
-        
         // Admin functionalities to delete menu 'Soft delete'
         public function deleteMenu(){
             if(isset($_POST['deleteBtn'])){
@@ -181,7 +208,7 @@
        
         public function addOrder(){
                 
-            if(isset($_POST['addOrder'])){
+            if(isset($_REQUEST['addOrder'])){
                 $category=$_POST['category'];
                 $menuName=$_POST['menuName'];
                 $quantity=$_POST['quantity'];
@@ -195,9 +222,24 @@
                  $subtotal=intVal($quantity)*intVal($price);
                  $statement=$connection->prepare("INSERT INTO  order_table(category,menuName,quantity,status,price,tableNo,subtotal) VALUES (?,?,?,?,?,?,?)");
                  $statement->execute([$category, $menuName,$quantity, $status, $price,$tableNo,$subtotal]);
+                 echo "<script> location.replace('example.php'); </script>";    
             }
-           
          }
+
+         public function addSales(){
+            if(isset($_POST['settlePayment'])){
+                 $tableNo=$_POST['tableNumber'];
+                 $amount=$_POST['amount'];
+                 $connection =$this->openConnection();
+                 $statement=$connection->prepare("INSERT INTO  sales(amount,tableNo) VALUES (?,?)");
+                 $statement->execute([$amount,$tableNo]);
+                 $statement2=$connection->prepare("DELETE FROM  order_table  WHERE tableNo=$tableNo");
+                 $statement2->execute();
+                 echo "<script> location.replace('example.php'); </script>";    
+            }
+         }
+
+
          
         // Waiter functionalities to delete order  
         public function deleteOrder(){

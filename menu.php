@@ -9,7 +9,7 @@ $myRestruant->updateMenu();
 <div class="container">
 
         <div class="row">
-        <h2>Menu</h2>
+           <h2>Menu</h2>
             <div class="container-fluid">
            
             <button class="btn btn-primary float-right mb-4" data-toggle="modal" data-target="#addModal"><i class="fa fa-plus"></i> Add Menu</button>

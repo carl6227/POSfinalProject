@@ -1,4 +1,3 @@
-
 <?php
 session_start();
 $_SESSION['username']="";
@@ -13,115 +12,143 @@ $_SESSION['isAdded']=false;
     $myRestruant->login();
 ?>
 <style>
+
+* {
+    box-sizing: border-box;
+}
+
+*:focus {
+    outline: none;
+}
+
 body {
-    display: table-cell;
-    vertical-align: middle;
+    font-family: Arial;
+    padding: 50px;
 }
 
-html {
-    display: table;
-    margin: auto;
+.login {
+    margin: 20px auto;
+    width: 300px;
 }
 
-html,
-body {
-    height: 100%;
+.login-screen {
+    background-color: #FFF;
+    padding: 20px;
+    border-radius: 5px
 }
 
-.medium-small {
-    font-size: 0.9rem;
-    margin: 0;
-    padding: 0;
+.app-title {
+    text-align: center;
+    color: #777;
 }
 
 .login-form {
-    width: 280px;
+    text-align: center;
 }
 
-.login-form-text {
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-size: 0.8rem;
+form {
+    border-radius: 20px;
+    padding: 1.3rem;
+    width: 500px;
+    margin: 2rem auto;
+
+
 }
 
-.login-text {
-    margin-top: -6px;
-    margin-left: -6px !important;
+.control-group {
+    margin-bottom: 10px;
 }
 
-.margin {
-    margin: 0 !important;
+input {
+    text-align: center;
+    background-color: #ECF0F1;
+    border: 2px solid transparent;
+    border-radius: 3px;
+    font-size: 16px;
+    font-weight: 200;
+    padding: 10px 0;
+    width: 250px;
+    transition: border .5s;
 }
 
-.pointer-events {
-    pointer-events: auto !important;
+input:focus {
+    border: 2px solid #3498DB;
+    box-shadow: none;
 }
 
-.input-field>.material-icons {
-    padding-top: 10px;
+.btn {
+    border: 2px solid transparent;
+    background: #3498DB;
+    color: #ffffff;
+    font-size: 16px;
+    line-height: 25px;
+    padding: 10px 0;
+    text-decoration: none;
+    text-shadow: none;
+    border-radius: 10px;
+    box-shadow: none;
+    transition: 0.25s;
+    display: block;
+    width: 200px;
+    margin: 0 auto;
 }
 
-.input-field div.error {
-    position: relative;
-    top: -1rem;
-    left: 3rem;
-    font-size: 0.8rem;
-    color: #FF4081;
-    -webkit-transform: translateY(0%);
-    -ms-transform: translateY(0%);
-    -o-transform: translateY(0%);
-    transform: translateY(0%);
+.btn:hover {
+    background-color: #2980B9;
+}
+
+.login-link {
+    font-size: 12px;
+    color: #444;
+    display: block;
+    margin-top: 12px;
 }
 </style>
 
 <body>
-    <div id="login" class="row">
-        <div class="col s12 z-depth-4 card-panel">
-            <form  class="login-form" method="post">
-                <div class="row">
-                    <div class="input-field col s12 center">
-                        <!-- <img src="images/login-logo.png" alt="" class="circle responsive-img valign profile-image-login"/> -->
-                        <p class="center login-form-text">LOGIN</p>
-                    </div>
-                </div>
-                <div class="row margin">
-                    <div class="input-field col s12">
-                        <!-- <i class="mdi-social-person-outline prefix"></i> -->
-                        <i class="material-icons prefix">account_circle</i>
-                        <input id="username" name="email" type="text"
-                            style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGP6zwAAAgcBApocMXEAAAAASUVORK5CYII=&quot;); cursor: auto;" />
-                        <label for="username" data-error="wrong" class="center-align"
-                            data-success="right">Email</label>
-                    </div>
-                </div>
-                <div class="row margin">
-                    <div class="input-field col s12">
-                        <!-- <i class="mdi-action-lock-outline prefix"></i> -->
-                        <i class="material-icons prefix">vpn_key</i>
-                        <input id="password" name="password" type="password"
-                            style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGP6zwAAAgcBApocMXEAAAAASUVORK5CYII=&quot;);" />
-                        <label for="password">Password</label>
-                    </div>
-                </div>
 
-            
-                <div class="row">
-                    <div class="input-field col s12">
-                        <button type="submit" name="login" class="btn waves-effect waves-light col s12">Login</button>
+    <div class="container mt-5 mb-5" style=" box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
+        <div class="row">
+            <div class="col-sm">
+                <img src="https://img.freepik.com/free-vector/account-log-page_41910-263.jpg?size=626&ext=jpg" alt="..."
+                    class="" style="height:100%; width:100%;">
+            </div>
+            <div class="col-sm">
+                <form method="post">
+                    <h3 class="mt-3 text-center mb-3 text-dark mb-4">
+                        JPG Restaurant Login Form
+                    </h3>
+                    <small
+                        class="text-danger"><?php echo isset($_SESSION['errorMsg'])?$_SESSION['errorMsg']:"";?></small>
+                    <div class="input-group col-lg-12 mb-4">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-light text-dark  px-4 border-md border-right-0">
+                                <i class="fa fa-envelope text-primary" style=" font-size:25px;padding:10px;"></i>
+                            </span>
+                        </div>
+                        <input id="name" type="text" name="email" placeholder="Email Address"
+                            class="form-control bg-light text-dark border-left-0 border-md text-left"
+                            style="padding:10px;" required>
                     </div>
 
-                </div>
-
-                <div class="row">
-                    <div class="input-field col s6 m6 l6">
-                        <p class="margin medium-small"><a href="page-register.html">Register Now!</a></p>
+                    <div class="input-group col-lg-12 mb-4">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-light text-dark  px-4 border-md border-right-0">
+                                <i class="fa fa-key text-primary" style=" font-size:25px;padding:10px;"></i>
+                            </span>
+                        </div>
+                        <input id="name" type="password" name="password" placeholder="Password"
+                            class="form-control bg-light text-dark border-left-0 border-md text-left"
+                            style="padding:10px" required>
                     </div>
-                    <div class="input-field col s6 m6 l6">
-                        <p class="margin right-align medium-small"><a href="page-forgot-password.html">Forgot password
-                                ?</a></p>
+                    <div class="text-center mt-3">
+                        <button type="submit" class="btn btn-primary mb-2" name="login" value="Save Data">
+                            <h4><i class="fa fa-sign-in" aria-hidden="true">
+                                </i> Login</h4>
+                        </button>
                     </div>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>

@@ -1,7 +1,7 @@
 <?php 
 
 session_start();
-    require_once('restruant.php');
+   require_once('restruant.php');
    
     $myRestruant->logout();
     
@@ -11,10 +11,12 @@ session_start();
     if($user==""){
         header('location:login.php');
     }
-    require_once('WaiterNavs.php');
+    
     require_once('waiterNavs.php');
+   
     $myRestruant->addOrder();
     $myRestruant->deleteOrder();
+    $myRestruant->addSales();
     
 
 ?>
@@ -22,16 +24,18 @@ session_start();
 <div class="container-fluid">
 
     <div class="container">
-
+        <h2 class="tableIndicator">Menu</h2>
         <div class="row">
 
-            <div class="container-fluid">
+            <?php $myRestruant->dispMenuForWaiter();?>
 
-                <button style="display:none"class="btn btn-primary float-right mb-4 addBtn" data-toggle="modal" data-target="#addOrderModal"><i
-                        class="fa fa-plus"></i> Add Order</button>
+            <div class="container-fluid tableWrapper" style="display:none">
+
+                <button class="btn btn-info float-right mb-4 addBtn" data-toggle="modal"
+                    data-target="#addOrderModal"><i class="fa fa-plus"></i> Add Order</button>
             </div>
 
-            <table class="table table-hover" style="display:none">
+            <table class="table table-hover tableWrapper">
                 <thead>
                     <tr>
                         <th>Menu Name</th>
@@ -43,13 +47,16 @@ session_start();
                     </tr>
                 </thead>
 
-                <tbody >
+                <tbody>
 
                 </tbody>
             </table>
 
-
+         <!-- totalbill container -->
+        <div class="container billWrapper mb-5">
+    
         </div>
+    
         <!-- Add order Modal -->
         <div class="modal fade" id="addOrderModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
@@ -61,10 +68,8 @@ session_start();
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body">
-                        <form action="#" method="post">
-
-
+                    <form action="#" method="post">
+                        <div class="modal-body">
                             <div class="input-group input-group-lg mb-4">
                                 <input type="text" id="categoriesDropDown" name="category" class="form-control"
                                     aria-label="Text input with dropdown button">
@@ -88,42 +93,37 @@ session_start();
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <div class="input-group input-group-lg">
-                                        <input type="number" min="1" class="form-control" name="quantity"
-                                            placeholder="quantity">
 
-                                    </div>
-                                </div>
-                                <div class="col-sm-5">
-                                    <div class="input-group input-group-lg">
-                                      
-                                        <input type="number" min="1" max="5"class="form-control" name="tablenum"
-                                            placeholder="Table No.">
+                            <div class="col-sm-6">
+                                <div class="input-group input-group-lg">
+                                    <input type="number" min="1" class="form-control" name="quantity"
+                                        placeholder="quantity">
 
-                                    </div>
                                 </div>
                             </div>
 
 
-                    </div>
-                    <div class="modal-footer">
-                        <input type="hidden" class="form-control" name="tableNo" value="1">
-                        <button type="button" class="btn btn-secondary btn-lg" data-dismiss="modal">Close</button>
-                        <button type="submit" name="addOrder" class="btn btn-primary btn-lg">Add Order</button>
-                        </form>
-                    </div>
+                            <input type="hidden" min="1" max="5" class="form-control tableNo" name="tablenum"
+                                placeholder="Table No.">
+
+
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary btn-lg" data-dismiss="modal">Close</button>
+                            <button type="submit" name="addOrder" class="btn btn-primary btn-lg">Add Order</button>
+                    </form>
                 </div>
             </div>
         </div>
+    </div>
 
-
-        <!-- /.container-fluid 
+           
+    <!-- /.container-fluid 
         -->
 
-    </div>
-    <!-- End of Main Content -->
+</div>
+<!-- End of Main Content -->
 
 </div>
 <!-- End of Content Wrapper -->
