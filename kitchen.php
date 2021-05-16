@@ -1,7 +1,5 @@
 <?php
  require_once('navForKitchen.php');
-     
- 
 ?>
 <!-- Begin Page Content -->
 <div class="container-fluid">
