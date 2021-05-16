@@ -77,7 +77,7 @@ $(document).ready(function() {
         var getmenuID = $(this).next().val();
         var statusRow = $(this).parent().prev().children().text();
         console.log((statusRow));
-        if(statusRow==" pending") {
+        if(statusRow==" pending" ) {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
@@ -85,7 +85,15 @@ $(document).ready(function() {
                 timer: 2000
               })
      
-        } else {
+        }else if(statusRow==" rejected" ) {
+            Swal.fire({
+                icon: 'info',
+                title: 'Oops...',
+                text: 'Order was rejected!!',
+                timer: 2000
+              })
+     
+        }  else {
 
             $.ajax({
                 type: "post",
