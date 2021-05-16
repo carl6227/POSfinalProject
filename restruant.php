@@ -149,7 +149,7 @@
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <div class="container-fluid">
-                                    <img src="'.$item['img'].'" alt="..." class="img-thumbnail" style="width:">
+                                     <img src="'.$item['img'].'" alt="..." class="img-thumbnail" style="height:200px;">
                                 </div>`
                                 <div class="col mr-2 mt-3">
                                     <div class="text-lg font-weight-bold text-primary text-center text-uppercase mb-1">
@@ -178,7 +178,6 @@
                 $statement->execute([$category,$menuName,$price,$dateAdded]);
             }
         }
-        
         // Admin functionalities to delete menu 'Soft delete'
         public function deleteMenu(){
             if(isset($_POST['deleteBtn'])){
@@ -225,9 +224,19 @@
                  $statement->execute([$category, $menuName,$quantity, $status, $price,$tableNo,$subtotal]);
                  echo "<script> location.replace('example.php'); </script>";    
             }
-            
-              
-           
+         }
+
+         public function addSales(){
+            if(isset($_POST['settlePayment'])){
+                 $tableNo=$_POST['tableNumber'];
+                 $amount=$_POST['amount'];
+                 $connection =$this->openConnection();
+                 $statement=$connection->prepare("INSERT INTO  sales(amount,tableNo) VALUES (?,?)");
+                 $statement->execute([$amount,$tableNo]);
+                 $statement2=$connection->prepare("DELETE FROM  order_table  WHERE tableNo=$tableNo");
+                 $statement2->execute();
+                 echo "<script> location.replace('example.php'); </script>";    
+            }
          }
 
 

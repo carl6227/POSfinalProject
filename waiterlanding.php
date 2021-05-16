@@ -16,6 +16,7 @@ session_start();
    
     $myRestruant->addOrder();
     $myRestruant->deleteOrder();
+    $myRestruant->addSales();
     
 
 ?>

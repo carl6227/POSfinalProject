@@ -1,5 +1,6 @@
 <?php 
-
+ require_once('restruant.php');
+ $myRestruant->addSales();
 	$host 		= "remotemysql.com";
 	$user		= "Ca4Rze9t7d";
 	$password	= "3Lzjt7JmOu";
@@ -82,12 +83,16 @@
 								<div class="card-body">
 										<div class="container-fluid">
 											<center>  <h4>Total Bill</h4></center>
+											<form method="post">
 											<div class="input-group input-group-lg mb-4 mt-3">
-												<input type="text" disabled id="categoriesDropDown" value="Php '.$bill['totalBill'].'" name="category" class="form-control bg-secondary text-light"
+												<input type="text" name="amount"  id="categoriesDropDown" value="Php '.$bill['totalBill'].'" name="category" class="form-control bg-secondary text-light"
 												aria-label="Text input with dropdown button">
+												
+												<input type="hidden" name="tableNumber" value="'.$table_number.'">
 											</div>
-												<button class="btn btn-info float-right"> Settle Payment</button>
+												<button  type="submit"class="btn btn-info float-right" name="settlePayment"> Settle Payment</button>
 											</div>
+											</form>
 									</div>
 								</div> 
 		              </div>
@@ -96,9 +101,6 @@
 		}
 	}//end for display orders
 	
-   
-
-
     // for diplaying all orders to kitchen page
 	   if(isset($_POST['display'])){
 		$sql = "SELECT * FROM order_table WHERE status !='delivered'";
