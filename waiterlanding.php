@@ -20,6 +20,10 @@ session_start();
     
 
 ?>
+<style>
+   
+   
+</style>
 <!-- Begin Page Content -->
 <div class="container-fluid">
 
@@ -34,29 +38,34 @@ session_start();
                 <button class="btn btn-info float-right mb-4 addBtn" data-toggle="modal"
                     data-target="#addOrderModal"><i class="fa fa-plus"></i> Add Order</button>
             </div>
+            <div class="container-fluid mb-5" style="overflow-y:auto;height: 350px;">
+                <table class="table table-hover tableWrapper" >
+                    <thead >
+                        <tr>
+                            <th>Menu Name</th>
+                            <th>price</th>
+                            <th>quantity</th>
+                            <th>subtotal</th>
+                            <th>status</th>
+                            <th>action</th>
+                        </tr>
+                    </thead>
 
-            <table class="table table-hover tableWrapper">
-                <thead>
-                    <tr>
-                        <th>Menu Name</th>
-                        <th>price</th>
-                        <th>quantity</th>
-                        <th>subtotal</th>
-                        <th>status</th>
-                        <th>action</th>
-                    </tr>
-                </thead>
+                    <tbody>
 
-                <tbody>
+                    </tbody>
+                </table>
 
-                </tbody>
-            </table>
-
+            </div>
+            <div>
+            <hr class="bg-dark">
+            </div>
+            
          <!-- totalbill container -->
         <div class="container billWrapper mb-5">
-    
-        </div>
-    
+       
+    </div>
+   
         <!-- Add order Modal -->
         <div class="modal fade" id="addOrderModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
@@ -123,6 +132,7 @@ session_start();
         -->
 
 </div>
+
 <!-- End of Main Content -->
 
 </div>
@@ -164,7 +174,6 @@ session_start();
 
 
 </script>
-
 
 </body>
 

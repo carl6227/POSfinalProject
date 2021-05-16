@@ -1,13 +1,14 @@
 
+<script src='//cdn.jsdelivr.net/npm/sweetalert2@11'></script>
 <?php
 session_start();
 
 $user=$_SESSION['username'];
+
 if($user!=""){
    echo "
    <script>
-   alert('Order added sucessfully!')
-   location.replace('waiterlanding.php'); 
+      location.replace('waiterlanding.php'); 
    </script>
   
    ";  
