@@ -4,7 +4,7 @@ $(document).ready(function() {
    
    
    
-   
+    $('.orderWrapper').show();
     $('.tableWrapper').hide();
     //hide the table when  click and show the orders
     $('.menuBtn').on('click', function() {
