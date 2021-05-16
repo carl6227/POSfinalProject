@@ -218,7 +218,7 @@
                 $fullname=$_POST["full_name"]; 
                 $address=$_POST["address"]; 
                 $email=$_POST['email'];   
-                $password= intVal($_POST['password']); 
+                $password= $_POST['password']; 
                 $connection =$this->openConnection(); 
                 $statement=$connection->prepare("UPDATE users_table  SET  fullName=?, email=?, password=?,address=?  WHERE user_id=$id");
                 $statement->execute([$fullname,$email,$password,$address]);

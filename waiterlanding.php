@@ -207,7 +207,7 @@ session_start();
             </div>
                 <div class="input-group input-group-lg">
                    <label for="exampleInputEmail1" class="mr-3">New Password:</label>
-                   <input type="password" class="form-control" name="password"value="'.$userInfo['password'].'">
+                   <input type="password" class="form-control" name="password" value="'.$userInfo['password'].'">
                    <input type="hidden" class="form-control" name="id"value="'.$userInfo['user_id'].'">
                 </div>
                         ';
