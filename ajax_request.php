@@ -18,6 +18,7 @@
 	{
 		$table_number = intVal($_POST['table_number']);
 		$sql = "SELECT * FROM order_table where tableNo=$table_number";
+	
 		$rs = mysqli_query($conn,$sql);
 		$numRows = mysqli_num_rows($rs);
 		
@@ -47,13 +48,19 @@
                  <p class="status"> '.$item['status'].'</p>
                 </td>
                 <td>
-				<button class="btn btn-outline-success deliverBtn">deliver</button>
+				<button class="btn btn-outline-success deliverBtn" >deliver</button>
 				<input type="hidden" value="'.$item['order_id'].'">
                 <button type="button" class="btn btn-outline-danger cancelBtn" >Cancel</button>
                 </td>
 				</tr>';
+				
 			}
+
 		}
+		
+		
+			
+		
 	}//end for display orders
 	
     if(isset($_POST['table_number_for_delivered_item']) && $_POST['table_number_for_delivered_item'] !=0)
@@ -188,9 +195,11 @@
 		$sql = "update   order_table set status='confirmed' where order_id = '".$menuID."'";
 		if ($rs = mysqli_query($conn,$sql)){
 			echo "YES";
+
 		}else{	
 			echo "NO";
 		}
+
 	}
 	
 	// update status of the order to reject

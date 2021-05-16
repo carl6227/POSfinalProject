@@ -1,11 +1,7 @@
 $(document).ready(function() {
   
- 
-    $('.tableWrapper').hide();
-
     
- 
-
+    $('.tableWrapper').hide();
     //hide the table when  click and show the orders
     $('.menuBtn').on('click',function(){
         $('.tableWrapper').hide();
@@ -71,13 +67,20 @@ $(document).ready(function() {
             },
         });
     });
-
+   
     // update status when the deliverBtn is click
     $(document).on("click", ".deliverBtn", function() {
         var getmenuID = $(this).next().val();
         var statusRow = $(this).parent().prev().children().text();
-        if (statusRow == "pending") {
-            alert("Can't deliver, Order is still PENDING");
+        console.log((statusRow));
+        if(statusRow==" pending") {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Order is still pending!',
+                timer: 2000
+              })
+     
         } else {
 
             $.ajax({
@@ -95,6 +98,7 @@ $(document).ready(function() {
                 },
             });
         }
+         
     });
 
     //script for the dropdown on categories and its corresponding items
@@ -150,6 +154,7 @@ $(document).ready(function() {
             success: function(returnData) {
                 if (returnData == "YES") {
                     displayOrders();
+                   
                 } else {
                     alert("can't update the row");
                 }
@@ -181,6 +186,6 @@ $(document).ready(function() {
         displayTotalBill()
         displayOrders();
        
-    }, 1000);
+    }, 3000);
 
 });
