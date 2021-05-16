@@ -158,7 +158,7 @@ session_start();
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
-            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+            <div class="modal-body">Are you sure you want to logout?</div>
             <div class="modal-footer">
                 <form method="post">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
