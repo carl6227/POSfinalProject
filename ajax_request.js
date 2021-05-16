@@ -58,7 +58,14 @@ $(document).ready(function() {
             },
             url: "ajax_request.php",
             success: function(returnData) {
-                if (returnData == "YES") {} else {
+                if (returnData == "YES") {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Order cancelled successfully !',
+                        showConfirmButton: false,
+                        timer: 1500
+                      })
+                } else {
                     alert("can't delete the row");
                 }
             },
@@ -150,7 +157,12 @@ $(document).ready(function() {
             url: "ajax_request.php",
             success: function(returnData) {
                 if (returnData == "YES") {
-                    displayOrders();
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Order confirmed!',
+                        showConfirmButton: false,
+                        timer: 1500
+                      })
                    
                 } else {
                     alert("can't update the row");
@@ -170,7 +182,13 @@ $(document).ready(function() {
             url: "ajax_request.php",
             success: function(returnData) {
                 if (returnData == "YES") {
-                    displayOrders();
+                    Swal.fire({
+                        icon: 'info',
+                        title: 'Order rejected!!',
+                        showConfirmButton: false,
+                        timer: 1500
+                      })
+                    
                 } else {
                     alert("can't update the row");
                 }
