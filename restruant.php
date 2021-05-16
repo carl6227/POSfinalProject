@@ -210,6 +210,32 @@
 
         // Waiter functionalities to add ORDER
        
+
+        public function updateInfo(){
+            if(isset($_POST['editProfileBtn'])){
+               
+                $id=$_POST['id']; 
+                $fullname=$_POST["full_name"]; 
+                $address=$_POST["address"]; 
+                $email=$_POST['email'];   
+                $password= $_POST['password']; 
+                $connection =$this->openConnection(); 
+                $statement=$connection->prepare("UPDATE users_table  SET  fullName=?, email=?, password=?,address=?  WHERE user_id=$id");
+                $statement->execute([$fullname,$email,$password,$address]);
+                echo "<script> location.replace('login.php'); </script>";  
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
         public function addOrder(){
                 
             if(isset($_REQUEST['addOrder'])){

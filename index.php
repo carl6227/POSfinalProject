@@ -3,7 +3,7 @@ session_start(); //start of a session
 include_once 'restruant.php'; // including the restruant.php file
 $myrestaurant = new restaurant(); // creating a restaurant object
 $myrestaurant->logout(); // calling logout function
-
+$myrestaurant->updateInfo(); // calling updateInfo function
 $user = $_SESSION['username']; // assign the session into user variable
 
 // checking if var user session is directly set
@@ -29,28 +29,28 @@ require_once 'navs.php'
         <!-- Earnings (Monthly) Card Example -->
         <?php $now = date("y-m-d");
 
-$connection = $myrestaurant->openConnection();
-$statement = $connection->prepare("SELECT sum(amount) as totalAmount FROM  sales where date='$now'");
-$statement->execute();
-$saleDate = $statement->fetch();
-echo '
-        <div class="col-xl-5 col-md-6 mb-4">
-            <div class="card border-left-primary shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                Earnings (Today)</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">Php ' . $saleDate['totalAmount'] . '</div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
+        $connection = $myrestaurant->openConnection();
+        $statement = $connection->prepare("SELECT sum(amount) as totalAmount FROM  sales where date='$now'");
+        $statement->execute();
+        $saleDate = $statement->fetch();
+        echo '
+                <div class="col-xl-5 col-md-6 mb-4">
+                    <div class="card border-left-primary shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                        Earnings (Today)</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">Php ' . $saleDate['totalAmount'] . '</div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>';
-?>
+                </div>';
+        ?>
 
         <?php
 $yesterday = date('Y-m-d', strtotime("-1 days"));
@@ -134,7 +134,61 @@ echo '
         </div>
     </div>
 </div>
+<!-- edit Profile  Modal-->
+<div class="modal fade" id="editProfileModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Edit Profile?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+            <form method="post">
+            <?php
+                
+   
+                $user = $_SESSION['username'];
+                $connection = $myRestruant->openConnection();
+                $statement = $connection->prepare("SELECT *  FROM  users_table  where  fullName='$user'");
+                $statement->execute();
+                $userInfo = $statement->fetch();
+              
+                echo '
+                <div class="input-group input-group-lg mb-4">
+                      <label for="exampleInputEmail1" class="mr-4">New Fullname:</label>
+                      <input type="text" class="form-control" name="full_name" value="'.$userInfo['fullName'].'">
+                </div>
+                <div class="input-group input-group-lg mb-4">
+                    <label for="exampleInputEmail1" class="mr-5">New Email:</label>
+                    <input type="email" class="form-control" name="email"value="'.$userInfo['email'].'">
+                </div>
+                <div class="input-group input-group-lg mb-4">
+                <label for="exampleInputEmail1" class="mr-4">New Address:</label>
+                <input type="text" class="form-control" name="address"value="'.$userInfo['address'].'">
+            </div>
+                <div class="input-group input-group-lg">
+                   <label for="exampleInputEmail1" class="mr-3">New Password:</label>
+                   <input type="password" class="form-control" name="password" value="'.$userInfo['password'].'">
+                   <input type="hidden" class="form-control" name="id"value="'.$userInfo['user_id'].'">
+                </div>
+                        ';
+            ?>
+          
+            
+            </div>
+            <div class="modal-footer">
+                
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <button class="btn btn-primary" type="submit" name="editProfileBtn">Update</button>
+                </form>
 
+            </div>
+        </div>
+    </div>
+</div>
 <!-- Bootstrap core JavaScript-->
 <script src="vendor/jquery/jquery.min.js"></script>
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
