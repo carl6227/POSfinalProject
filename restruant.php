@@ -107,15 +107,15 @@
                                 <input type="hidden" name="ID"value="'.$item['menuID'].'">
                                 <div class="form-group input-group-lg">
                                     <label for="exampleInputEmail1">Category</label>
-                                    <input type="text" class="form-control"name="newCategory" aria-label="Large" placeholder="'.$item['category'].'">
+                                    <input type="text" class="form-control"name="newCategory" aria-label="Large" value="'.$item['category'].'">
                                 </div>
-                                <div class="form-group input-group-lg">
+                                <div class="form-group input-group-lg"> 
                                     <label for="exampleInputEmail1">Menu Name</label>
-                                    <input type="text" class="form-control" name="newMenuName"aria-label="Large" placeholder="'.$item['menuName'].'">
+                                    <input type="text" class="form-control" name="newMenuName"aria-label="Large" value="'.$item['menuName'].'">
                                 </div>
                                 <div class="form-group input-group-lg">
                                     <label for="exampleInputEmail1">Price</label>
-                                    <input type="number" class="form-control" name="newPrice"aria-label="Large" placeholder="'.$item['price'].'" >
+                                    <input type="number" class="form-control" name="newPrice"aria-label="Large" value="'.$item['price'].'" >
                                 </div>
                            </div>
                             <div class="modal-footer">
@@ -127,9 +127,9 @@
                 </div>
             </div>
             <form method="post">
-            <button  type="button"class="btn btn-info editBtn">Edit</button>
+            <button  type="button"class="btn btn-info editBtn"><i class="fa fa-edit" aria-hidden="true"></i>&nbsp;Edit</button>
             <input type="hidden" name="id"value="'.$item['menuID'].'">
-             <button type="submit"class="btn btn-danger" name="deleteBtn">Delete</button>
+             <button type="submit"class="btn btn-danger" name="deleteBtn"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp;Delete</button>
             </form>
              </td>
              </tr>';

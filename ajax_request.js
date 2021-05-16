@@ -50,26 +50,64 @@ $(document).ready(function() {
 
     //delete order when cancelBtn is clicked
     $(document).on("click", ".cancelBtn", function() {
-        var getmenuID = $(this).prev().val();
-        $.ajax({
-            type: "post",
-            data: {
-                item_id: getmenuID
-            },
-            url: "ajax_request.php",
-            success: function(returnData) {
-                if (returnData == "YES") {
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Order cancelled successfully !',
-                        showConfirmButton: false,
-                        timer: 1500
-                      })
-                } else {
-                    alert("can't delete the row");
-                }
-            },
-        });
+
+
+        // const swalWithBootstrapButtons = Swal.mixin({
+        //     customClass: {
+        //       confirmButton: 'btn btn-success',
+        //       cancelButton: 'btn btn-danger'
+        //     },
+        //     buttonsStyling: false
+        //   })
+          
+        //   swalWithBootstrapButtons.fire({
+        //     title: 'Are you sure?',
+        //     text: "You won't be able to revert this!",
+        //     icon: 'warning',
+        //     showCancelButton: true,
+        //     confirmButtonText: 'Yes, delete it!',
+        //     cancelButtonText: 'No, cancel!',
+        //     reverseButtons: true
+        //   }).then((result) => {
+        //     if (result.isConfirmed) {
+
+
+        //       swalWithBootstrapButtons.fire(
+        //         'Deleted!',
+        //         'Your file has been deleted.',
+        //         'success'
+        //       )
+        //     } else if (
+        //       /* Read more about handling dismissals below */
+        //       result.dismiss === Swal.DismissReason.cancel
+        //     ) {
+        //       swalWithBootstrapButtons.fire(
+        //         'Cancelled',
+        //         'Your imaginary file is safe :)',
+        //         'error'
+        //       )
+        //     }
+        //   })
+        // var getmenuID = $(this).prev().val();
+        // $.ajax({
+        //     type: "post",
+        //     data: {
+        //         item_id: getmenuID
+        //     },
+        //     url: "ajax_request.php",
+        //     success: function(returnData) {
+        //         if (returnData == "YES") {
+        //             Swal.fire({
+        //                 icon: 'success',
+        //                 title: 'Order cancelled successfully !',
+        //                 showConfirmButton: false,
+        //                 timer: 1500
+        //               })
+        //         } else {
+        //             alert("can't delete the row");
+        //         }
+        //     },
+        // });
     });
    
     // update status when the deliverBtn is click

@@ -96,7 +96,7 @@ session_start();
 
                             <div class="col-sm-6">
                                 <div class="input-group input-group-lg">
-                                    <input type="number" min="1" class="form-control" name="quantity"
+                                    <input type="number" min="1" value="1"class="form-control" name="quantity"
                                         placeholder="quantity">
 
                                 </div>

@@ -60,7 +60,7 @@ $statement->execute();
 $saleDate = $statement->fetch();
 echo '
         <!-- Earnings (Monthly) Card Example -->
-        <div class="col-xl-5 col-md-6 mb-4">
+        <div class="col-xl-6 col-md-6 mb-4">
             <div class="card border-left-success shadow h-100 py-2">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
@@ -78,14 +78,14 @@ echo '
         </div>';
 ?>
      
-        <div class="container my-4">
+        <div class="container my-4 ">
         <hr class="bg-dark">
 
         <p class="font-weight-bold"> Customers Favourite</p>
 
 
             <div>
-                <canvas id="pieChart" style="max-width: 500px;"></canvas>
+                <canvas id="pieChart" style="max-width: 800px;"></canvas>
             </div>
 
         </div>
@@ -123,7 +123,7 @@ echo '
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
-            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+            <div class="modal-body">Are you sure you want to logout?</div>
             <form method="post">
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
@@ -156,9 +156,9 @@ var ctxP = document.getElementById("pieChart").getContext('2d');
 var myPieChart = new Chart(ctxP, {
     type: 'pie',
     data: {
-        labels: ["Red", "Green", "Yellow", "Grey", "Dark Grey"],
+        labels: ["Batchoy", "Bicol Express", "Bulalo", "Pancit Lomi", "JPG especial Fried Rice"],
         datasets: [{
-            data: [300, 50, 100, 40, 120],
+            data: [250, 50, 100, 40, 150],
             backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C", "#949FB1", "#4D5360"],
             hoverBackgroundColor: ["#FF5A5E", "#5AD3D1", "#FFC870", "#A8B3C5", "#616774"]
         }]
