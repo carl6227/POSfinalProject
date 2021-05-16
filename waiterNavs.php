@@ -39,38 +39,38 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <ul class="navbar-nav bg-gradient-info sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+                <div class="sidebar-brand-text mx-3">Waiter </div>
             </a>
             <!-- Divider -->
             <hr class="sidebar-divider">
             <!-- Nav Item - Tables -->
 
             <li class="nav-item">
-                <a class="nav-link" href="table4.php">
-                    <i class="fas fa-fw fa-table"></i>
+                <a class="nav-link menuBtn" type="button" >
+                <i class="fas fa-utensils"></i>
                     <span>Menu</span></a>
             </li>
             <li class="nav-item">
               
               <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
                       aria-expanded="true" aria-controls="collapsePages">
-                      <i class="fas fa-fw fa-folder"></i>
+                      <i class="fas fa-fw fa-table"></i>
                       <span>Tables</span>
                   </a>
                   <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                       <div class="bg-white py-2 collapse-inner rounded">
-                          <a type="button" class="collapse-item table" name="1" >Table 1</a>
-                          <a  type="button" class="collapse-item table" name="2">Table 2</a>
-                          <a  type="button" class="collapse-item table" name="3">Table 3</a>
-                          <a  type="button" class="collapse-item table" name="4">Table 4</a>
-                          <a  type="button" class="collapse-item table" name="5">Table 5</a>
+                          <a  type="button" class="collapse-item storeTable" name="1">Table 1</a>
+                          <a  type="button" class="collapse-item storeTable" name="2">Table 2</a>
+                          <a  type="button" class="collapse-item storeTable" name="3">Table 3</a>
+                          <a  type="button" class="collapse-item storeTable" name="4">Table 4</a>
+                          <a  type="button" class="collapse-item storeTable" name="5">Table 5</a>
                       </div>
                   </div>
         </ul>

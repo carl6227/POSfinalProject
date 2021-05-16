@@ -1,80 +1,132 @@
 $(document).ready(function() {
+    $('.tableWrapper').hide();
+    //hide the table when  click and show the orders
+    $('.menuBtn').on('click', function() {
+        $('.tableWrapper').hide();
+        $('.orderWrapper').show();
 
+    });
 
-    $('table').hide();
-    $('.addBtn').hide();
-
-    //scripts for displaying the orders
-    displaySpecificOrders();
+    var tableNumber = 0;
+    var tableNumberForDeliveredItem = 0;
+    $('.storeTable').on('click', function() {
+        tableNumber = parseInt($(this).attr('name'));
+        tableNumberForDeliveredItem = parseInt($(this).attr('name'));
+        $('.tableIndicator').text('Table Number: ' + tableNumber.toString());
+        $('.tableNo').val(tableNumber);
+        $('.tableWrapper').show();
+        $('.orderWrapper').hide();
+    })
 
     function displaySpecificOrders() { //defining a function that display a specific base on the number of its table
-        $('.table').on('click', function() {
-            $('table').show();
-            $('.addBtn').show();
-            var tableNumber = parseInt($(this).attr('name'));
-            $.ajax({
-                type: "post",
-                data: {
-                    table_number: tableNumber,
-                },
-                url: "ajax_request.php",
-                success: function(returnData) {
-                    $("tbody").html(returnData);
-                },
-            });
-        })
-    }
-
-
-    $('.table').on('click', function() {
-        var tableNumber = parseInt($(this).attr('name'));
-        console.log($(this).parent().parent().parent().parent().nextUntil('div.fade'));
         $.ajax({
             type: "post",
             data: {
                 table_number: tableNumber,
             },
-            url: "restruant.php",
+            url: "ajax_request.php",
             success: function(returnData) {
                 $("tbody").html(returnData);
+
             },
         });
-    })
+    }
 
-    //checking the value of the status of the ordered item
+
+    function displayTotalBill() { //defining a function that display the total bill of specific table 
+        $.ajax({
+            type: "post",
+            data: {
+                table_number_for_delivered_item: tableNumberForDeliveredItem,
+            },
+            url: "ajax_request.php",
+            success: function(returnData) {
+                $(".billWrapper").html(returnData);
+
+            },
+        });
+    }
 
 
     //delete order when cancelBtn is clicked
-    $('.table').on('click', function() {
-        var tableNumber = parseInt($(this).attr('name'));
-        $(document).on("click", ".cancelBtn", function() {
-            var getmenuID = $(this).prev().val();
-            var element = $(this).parent().parent();
-            $.ajax({
-                type: "post",
-                data: {
-                    item_id: getmenuID,
-                    table_number_cancel: tableNumber
-                },
-                url: "ajax_request.php",
-                success: function(returnData) {
-                    if (returnData == "YES") {
-                        alert('cancel success')
-                    } else {
-                        alert("can't delete the row");
-                    }
-                },
-            });
-        });
-    });
+    $(document).on("click", ".cancelBtn", function() {
 
+var getmenuID = $(this).prev().val();
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+              confirmButton: 'btn btn-info ml-3',
+              cancelButton: 'btn btn-danger'
+            },
+            buttonsStyling: false
+          })
+          
+          swalWithBootstrapButtons.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, delete it! ',
+            cancelButtonText: ' No, cancel!',
+            reverseButtons: true
+          }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                            type: "post",
+                            data: {
+                                item_id: getmenuID
+                            },
+                            url: "ajax_request.php",
+                            success: function(returnData) {
+                                if (returnData == "YES") {
+                                    swalWithBootstrapButtons.fire(
+                                        'Deleted!',
+                                        'Your order has been cancelled!.',
+                                        'success'
+                                      )
+                                } else {
+                                    alert("can't delete the row");
+                                }
+                            },
+                        });
+
+          
+            } else if (
+              /* Read more about handling dismissals below */
+              result.dismiss === Swal.DismissReason.cancel
+            ) {
+              swalWithBootstrapButtons.fire(
+                'Cancelled',
+                'Your order has been preserve :)',
+                'error'
+              )
+            }
+          })
+        
+       
+    });
+   
     // update status when the deliverBtn is click
     $(document).on("click", ".deliverBtn", function() {
         var getmenuID = $(this).next().val();
         var statusRow = $(this).parent().prev().children().text();
-        if (statusRow == "pending") {
-            alert("Can't deliver, Order is still PENDING");
-        } else {
+        console.log((statusRow));
+        if(statusRow==" pending" ) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Order is still pending!',
+                timer: 2000
+              })
+     
+        }else if(statusRow==" rejected" ) {
+            Swal.fire({
+                icon: 'info',
+                title: 'Oops...',
+                text: 'Order was rejected!!',
+                timer: 2000
+              })
+     
+        }  else {
 
             $.ajax({
                 type: "post",
@@ -91,6 +143,7 @@ $(document).ready(function() {
                 },
             });
         }
+         
     });
 
     //script for the dropdown on categories and its corresponding items
@@ -145,7 +198,13 @@ $(document).ready(function() {
             url: "ajax_request.php",
             success: function(returnData) {
                 if (returnData == "YES") {
-                    displayOrders();
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Order confirmed!',
+                        showConfirmButton: false,
+                        timer: 1500
+                      })
+                   
                 } else {
                     alert("can't update the row");
                 }
@@ -164,7 +223,13 @@ $(document).ready(function() {
             url: "ajax_request.php",
             success: function(returnData) {
                 if (returnData == "YES") {
-                    displayOrders();
+                    Swal.fire({
+                        icon: 'info',
+                        title: 'Order rejected!!',
+                        showConfirmButton: false,
+                        timer: 1500
+                      })
+                    
                 } else {
                     alert("can't update the row");
                 }
@@ -174,6 +239,9 @@ $(document).ready(function() {
 
     setInterval(function() {
         displaySpecificOrders();
+        displayTotalBill()
         displayOrders();
+       
     }, 3000);
+
 });
