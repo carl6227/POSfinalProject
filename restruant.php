@@ -204,6 +204,12 @@
             }
         }
        
+        
+          
+          
+        
+
+
         // Waiter functionalities to add ORDER
        
         public function addOrder(){
@@ -230,9 +236,10 @@
             if(isset($_POST['settlePayment'])){
                  $tableNo=$_POST['tableNumber'];
                  $amount=$_POST['amount'];
+                 $soldAt= date("Y-m-d");
                  $connection =$this->openConnection();
-                 $statement=$connection->prepare("INSERT INTO  sales(amount,tableNo) VALUES (?,?)");
-                 $statement->execute([$amount,$tableNo]);
+                 $statement=$connection->prepare("INSERT INTO  sales(amount,tableNo,date) VALUES (?,?,?)");
+                 $statement->execute([$amount,$tableNo,$soldAt]);
                  $statement2=$connection->prepare("DELETE FROM  order_table  WHERE tableNo=$tableNo");
                  $statement2->execute();
                  echo "<script> location.replace('example.php'); </script>";    

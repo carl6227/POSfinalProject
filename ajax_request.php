@@ -85,9 +85,12 @@
 											<center>  <h4>Total Bill</h4></center>
 											<form method="post">
 											<div class="input-group input-group-lg mb-4 mt-3">
-												<input type="text" name="amount"  id="categoriesDropDown" value="Php '.$bill['totalBill'].'" name="category" class="form-control bg-secondary text-light"
-												aria-label="Text input with dropdown button">
+											 <div class="row">
+                                              <div class="col-sm-3"><strong class="float-right">Php</strong></div>
+											  <div class="col-sm-8"> <input type="text" name="amount"  id="categoriesDropDown" value=" '.intVal($bill['totalBill']).'" name="category" class="form-control bg-secondary text-light"
+											  aria-label="Text input with dropdown button"></div>
 												
+												</div>
 												<input type="hidden" name="tableNumber" value="'.$table_number.'">
 											</div>
 												<button  type="submit"class="btn btn-info float-right" name="settlePayment"> Settle Payment</button>
