@@ -1,35 +1,17 @@
 <?php 
-
-session_start();
-   require_once('restruant.php');
-   
-    $myRestruant->logout();
-    
-    $user=$_SESSION['username'];
-   
-
-    if($user==""){
-        header('location:login.php');
-    }
-    
-    require_once('waiterNavs.php');
-   
-    $myRestruant->addOrder();
-    $myRestruant->deleteOrder();
-    $myRestruant->addSales();
-    $myRestruant->updateInfo();
-    
-
+    require_once('restruant.php');
+    require_once('usernavs.php');
 ?>
-<style>
-   
-   
-</style>
 <!-- Begin Page Content -->
 <div class="container-fluid">
 
     <div class="container">
-        <h2 class="tableIndicator">Menu</h2>
+        <h2 class="tableIndicator mb-2">Welcome Dear Users</h2>
+        <div class="text-center text-info mt-3 mb-3">
+            <h2>
+                Enjoy Our Dishes
+            </h2>
+        </div>
         <div class="row">
 
             <?php $myRestruant->dispMenuForWaiter();?>
@@ -39,34 +21,29 @@ session_start();
                 <button class="btn btn-info float-right mb-4 addBtn" data-toggle="modal"
                     data-target="#addOrderModal"><i class="fa fa-plus"></i> Add Order</button>
             </div>
-            <div class="container-fluid mb-5" style="overflow-y:auto;height: 350px;">
-                <table class="table table-hover tableWrapper" >
-                    <thead >
-                        <tr>
-                            <th>Menu Name</th>
-                            <th>price</th>
-                            <th>quantity</th>
-                            <th>subtotal</th>
-                            <th>status</th>
-                            <th>action</th>
-                        </tr>
-                    </thead>
 
-                    <tbody>
+            <table class="table table-hover tableWrapper">
+                <thead>
+                    <tr>
+                        <th>Menu Name</th>
+                        <th>price</th>
+                        <th>quantity</th>
+                        <th>subtotal</th>
+                        <th>status</th>
+                        <th>action</th>
+                    </tr>
+                </thead>
 
-                    </tbody>
-                </table>
+                <tbody>
 
-            </div>
-            <div>
-            <hr class="bg-dark">
-            </div>
-            
+                </tbody>
+            </table>
+
          <!-- totalbill container -->
         <div class="container billWrapper mb-5">
-       
-    </div>
-   
+    
+        </div>
+    
         <!-- Add order Modal -->
         <div class="modal fade" id="addOrderModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
@@ -133,7 +110,6 @@ session_start();
         -->
 
 </div>
-
 <!-- End of Main Content -->
 
 </div>
@@ -169,69 +145,13 @@ session_start();
         </div>
     </div>
 </div>
-
-<!-- edit Profile  Modal-->
-<div class="modal fade" id="editProfileModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Edit Profile?</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-            <div class="modal-body">
-            <form method="post">
-            <?php
-                
-   
-                $user = $_SESSION['username'];
-                $connection = $myRestruant->openConnection();
-                $statement = $connection->prepare("SELECT *  FROM  users_table  where  fullName='$user'");
-                $statement->execute();
-                $userInfo = $statement->fetch();
-              
-                echo '
-                <div class="input-group input-group-lg mb-4">
-                      <label for="exampleInputEmail1" class="mr-4">New Fullname:</label>
-                      <input type="text" class="form-control" name="full_name" value="'.$userInfo['fullName'].'">
-                </div>
-                <div class="input-group input-group-lg mb-4">
-                    <label for="exampleInputEmail1" class="mr-5">New Email:</label>
-                    <input type="email" class="form-control" name="email"value="'.$userInfo['email'].'">
-                </div>
-                <div class="input-group input-group-lg mb-4">
-                <label for="exampleInputEmail1" class="mr-4">New Address:</label>
-                <input type="text" class="form-control" name="address"value="'.$userInfo['address'].'">
-            </div>
-                <div class="input-group input-group-lg">
-                   <label for="exampleInputEmail1" class="mr-3">New Password:</label>
-                   <input type="password" class="form-control" name="password"value="'.$userInfo['password'].'">
-                   <input type="hidden" class="form-control" name="id"value="'.$userInfo['user_id'].'">
-                </div>
-                        ';
-            ?>
-          
-            
-            </div>
-            <div class="modal-footer">
-                
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <button class="btn btn-primary" type="submit" name="editProfileBtn">Update</button>
-                </form>
-
-            </div>
-        </div>
-    </div>
-</div>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script type="text/javascript" src="ajax_request.js">
 
 
 </script>
+
 
 </body>
 

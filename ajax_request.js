@@ -1,4 +1,10 @@
 $(document).ready(function() {
+   
+   
+   
+   
+   
+   
     $('.tableWrapper').hide();
     //hide the table when  click and show the orders
     $('.menuBtn').on('click', function() {
@@ -82,6 +88,7 @@ var getmenuID = $(this).prev().val();
                                         'Deleted!',
                                         'Your order has been cancelled!.',
                                         'success'
+                                        
                                       )
                                 } else {
                                     alert("can't delete the row");

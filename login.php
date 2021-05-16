@@ -2,7 +2,6 @@
 session_start();
 $_SESSION['username']="";
 $_SESSION['errorMsg']="";
-$_SESSION['isAdded']=false;
 
     include_once('restruant.php');
     include_once('header.php');
@@ -78,8 +77,6 @@ input:focus {
 
 .btn {
     border: 2px solid transparent;
-    background: #3498DB;
-    color: #ffffff;
     font-size: 16px;
     line-height: 25px;
     padding: 10px 0;
@@ -107,23 +104,23 @@ input:focus {
 
 <body>
 
-    <div class="container mt-5 mb-5" style=" box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
+    <div class="container mt-5 mb-5" >
         <div class="row">
             <div class="col-sm">
-                <img src="https://img.freepik.com/free-vector/account-log-page_41910-263.jpg?size=626&ext=jpg" alt="..."
+                <img src="https://img.freepik.com/free-vector/school-canteen-cafeteria-cafe-scene-set-flat-isolated-illustration-happy-children-having-lunch_103044-898.jpg?size=626&ext=jpg" alt="..."
                     class="" style="height:100%; width:100%;">
             </div>
             <div class="col-sm">
                 <form method="post">
-                    <h3 class="mt-3 text-center mb-3 text-dark mb-4">
-                        JPG Restaurant Login Form
+                    <h3 class="text-center text-light mb-4 ml-3 bg-info" style="width:420px; padding:10px;border-radius:5px;margin-top:-35px;">
+                        JPG Restaurant 
                     </h3>
                     <small
                         class="text-danger"><?php echo isset($_SESSION['errorMsg'])?$_SESSION['errorMsg']:"";?></small>
-                    <div class="input-group col-lg-12 mb-4">
+                    <div class="input-group col-lg-12 mb-4" style="margin-top:50px;">
                         <div class="input-group-prepend">
                             <span class="input-group-text bg-light text-dark  px-4 border-md border-right-0">
-                                <i class="fa fa-envelope text-primary" style=" font-size:25px;padding:10px;"></i>
+                                <i class="fa fa-envelope text-info" style=" font-size:25px;padding:10px;"></i>
                             </span>
                         </div>
                         <input id="name" type="text" name="email" placeholder="Email Address"
@@ -134,7 +131,7 @@ input:focus {
                     <div class="input-group col-lg-12 mb-4">
                         <div class="input-group-prepend">
                             <span class="input-group-text bg-light text-dark  px-4 border-md border-right-0">
-                                <i class="fa fa-key text-primary" style=" font-size:25px;padding:10px;"></i>
+                                <i class="fa fa-key text-info" style=" font-size:25px;padding:10px;"></i>
                             </span>
                         </div>
                         <input id="name" type="password" name="password" placeholder="Password"
@@ -142,9 +139,8 @@ input:focus {
                             style="padding:10px" required>
                     </div>
                     <div class="text-center mt-3">
-                        <button type="submit" class="btn btn-primary mb-2" name="login" value="Save Data">
-                            <h4><i class="fa fa-sign-in" aria-hidden="true">
-                                </i> Login</h4>
+                        <button type="submit" class="btn btn-info mb-2 float-right mr-3" name="login" value="Save Data">
+                            Login
                         </button>
                     </div>
                 </form>

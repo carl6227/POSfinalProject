@@ -1,6 +1,4 @@
 <?php
-
-
     class restaurant
     {
         // Initializing varaibles to be used in connecting to the online database using phpmyadmin
@@ -246,15 +244,17 @@
                 $quantity=$_POST['quantity'];
                 $status="pending";
                 $tableNo=intVal($_POST['tablenum']);
-                 $connection =$this->openConnection();
-                 $getPriceStatement=$connection->prepare("SELECT price FROM menu  WHERE menuName='$menuName'");
-                 $getPriceStatement->execute();
-                 $result=$getPriceStatement->fetch();
-                 $price= $result['price'];
-                 $subtotal=intVal($quantity)*intVal($price);
-                 $statement=$connection->prepare("INSERT INTO  order_table(category,menuName,quantity,status,price,tableNo,subtotal) VALUES (?,?,?,?,?,?,?)");
-                 $statement->execute([$category, $menuName,$quantity, $status, $price,$tableNo,$subtotal]);
-                 echo "<script> location.replace('example.php'); </script>";    
+                $connection =$this->openConnection();
+                $getPriceStatement=$connection->prepare("SELECT price FROM menu  WHERE menuName='$menuName'");
+                $getPriceStatement->execute();
+                $result=$getPriceStatement->fetch();
+                $price= $result['price'];
+                $subtotal=intVal($quantity)*intVal($price);
+                $statement=$connection->prepare("INSERT INTO  order_table(category,menuName,quantity,status,price,tableNo,subtotal) VALUES (?,?,?,?,?,?,?)");
+                $statement->execute([$category, $menuName,$quantity, $status, $price,$tableNo,$subtotal]);
+                echo "<script>
+                location.replace('example.php');                
+                </script>";    
             }
          }
 
@@ -299,9 +299,8 @@
         // ADMIN and WAITER logout function
          public function logout(){
             if(isset($_POST['logout'])){
-                session_start();
                 session_destroy();
-                header('location:login.php');
+                echo "<script> location.replace('login.php'); </script>";   
             }
          }
     }
