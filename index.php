@@ -21,7 +21,7 @@ require_once 'navs.php'
 <!-- Begin Page Content -->
 <div class="container-fluid">
 
-    
+
 
     <!-- Content Row -->
     <div class="row">
@@ -44,7 +44,7 @@ require_once 'navs.php'
                                     <div class="h5 mb-0 font-weight-bold text-gray-800">Php ' . $saleDate['totalAmount'] . '</div>
                                 </div>
                                 <div class="col-auto">
-                                    <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                    <i class="fas fa-coins fa-2x text-gray-300"></i>
                                 </div>
                             </div>
                         </div>
@@ -70,22 +70,22 @@ echo '
                             <div class="h5 mb-0 font-weight-bold text-gray-800">Php ' . $saleDate['totalAmount'] . '</div>
                         </div>
                         <div class="col-auto">
-                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                            <i class="fas fa-coins fa-2x text-gray-300"></i>
                         </div>
                     </div>
                 </div>
             </div>
         </div>';
 ?>
-     
-        <div class="container my-4 ">
-        <hr class="bg-dark">
+ 
+        <div class="container my-4 text-center">
+            <hr class="bg-dark">
 
-        <p class="font-weight-bold"> Customers Favourite</p>
+            <p class="font-weight-bold text-lg"> Customers Favourite</p>
 
 
-            <div>
-                <canvas id="pieChart" style="max-width: 800px;"></canvas>
+            <div class="" >
+                <canvas id="pieChart" style="max-width: 800px;margin-left:150px;"></canvas>
             </div>
 
         </div>
@@ -146,8 +146,8 @@ echo '
                 </button>
             </div>
             <div class="modal-body">
-            <form method="post">
-            <?php
+                <form method="post">
+                    <?php
                 
    
                 $user = $_SESSION['username'];
@@ -176,13 +176,13 @@ echo '
                 </div>
                         ';
             ?>
-          
-            
+
+
             </div>
             <div class="modal-footer">
-                
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <button class="btn btn-primary" type="submit" name="editProfileBtn">Update</button>
+
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <button class="btn btn-primary" type="submit" name="editProfileBtn">Update</button>
                 </form>
 
             </div>
