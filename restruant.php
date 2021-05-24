@@ -142,27 +142,32 @@
             foreach($items as $item) 
           {  
            echo '
-            <div class="col-xl-4 col-md-6 mb-4 orderWrapper" >
-                    <div class="card border-left-info shadow h-100 py-2">
-                        <div class="card-body">
-                            <div class="row no-gutters align-items-center">
-                                <div class="container-fluid">
-                                     <img src="'.$item['img'].'" alt="..." class="img-thumbnail" style="height:200px;">
-                                </div>`
-                                <div class="col mr-2 mt-3">
-                                    <div class="text-lg font-weight-bold text-primary text-center text-uppercase mb-1">
-                                        '.$item['menuName'].'</div>
-                                    <div class="mb-0 font-weight-bold text-md text-center text-gray-800">PHP '.$item['price'].'
-                                    </div>
-                                </div>
-                          </div>
-                     </div>
-                     </div> 
-            </div>';
-
-
-          }
+         
+            <article class="card card--1">
+            <div class="card__info-hover">
+               
+            </div>
+            <div class="card__img" align="center">
+            <img src="'.$item['img'].'" alt="..."style="height:200px;">
+            </div>
+            <a href="#" class="card_link">
+                <div class="card__img--hover"></div>
+            </a>
+            <div class="card__info">
+                <span class="card__category"><span>&#8369;</span>'.$item['price'].'              <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span></span>
+                <h3 class="card__title">'.$item['menuName'].'</h3>
+                <span class="card__by">Category: <a href="#" class="card__author" title="author">'.$item['category'].' </a></span>
+            </div>
+            </article>
+  
+  
+          ';
         }
+    }
         // ADMIN functionalities 
         // Function to add menu.
         public function addMenu(){
@@ -234,7 +239,7 @@
 
 
 
-
+//add order function
 
         public function addOrder(){
                 
@@ -245,13 +250,14 @@
                 $status="pending";
                 $tableNo=intVal($_POST['tablenum']);
                 $connection =$this->openConnection();
-                $getPriceStatement=$connection->prepare("SELECT price FROM menu  WHERE menuName='$menuName'");
+                $getPriceStatement=$connection->prepare("SELECT price,img FROM menu  WHERE menuName='$menuName'");
                 $getPriceStatement->execute();
                 $result=$getPriceStatement->fetch();
                 $price= $result['price'];
+                $image= $result['img'];
                 $subtotal=intVal($quantity)*intVal($price);
-                $statement=$connection->prepare("INSERT INTO  order_table(category,menuName,quantity,status,price,tableNo,subtotal) VALUES (?,?,?,?,?,?,?)");
-                $statement->execute([$category, $menuName,$quantity, $status, $price,$tableNo,$subtotal]);
+                $statement=$connection->prepare("INSERT INTO  order_table(category,menuName,quantity,status,price,tableNo,subtotal,img) VALUES (?,?,?,?,?,?,?,?)");
+                $statement->execute([$category, $menuName,$quantity, $status, $price,$tableNo,$subtotal,$image]);
                 echo "<script>
                 location.replace('example.php');                
                 </script>";    

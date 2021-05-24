@@ -6,13 +6,9 @@
 <div class="container-fluid">
 
     <div class="container">
-        <h2 class="tableIndicator mb-2">Welcome our valued Customers!</h2>
-        <div class="text-center text-info mt-3 mb-3">
-            <h2>
-                Enjoy Our Dishes
-            </h2>
-        </div>
-        <div class="row">
+        <h2 class="tableIndicator ">Welcome our valued Customers! <span  class="text-center text-info mt-3 ml-5 ">       Enjoy Our Dishes</span></h2>
+        
+        <div class="row mt-5">
 
             <?php $myRestruant->dispMenuForWaiter();?>
 

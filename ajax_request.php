@@ -79,12 +79,12 @@
 		{
 			while($bill = mysqli_fetch_assoc($rs))
 			{
-				echo'    <div class="card border-left-info shadow h-100 py-2 float-right">
+				echo'    <div class="card border-left-info shadow h-70 py-2 float-right">
 								<div class="card-body">
 										<div class="container-fluid">
 											<center>  <h4>Total Bill</h4></center>
 											<form method="post">
-											<div class="input-group input-group-lg mb-4 mt-3">
+											<div class="input-group input-group-lg mb-2 mt-2">
 											 <div class="row">
                                               <div class="col-sm-3"><strong class="float-right">Php</strong></div>
 											  <div class="col-sm-7"> <input type="text"readonly name="amount"  id="categoriesDropDown" value=" '.intVal($bill['totalBill']).'" name="category" class="form-control bg-secondary text-light"
@@ -126,7 +126,9 @@
 								<div style="margin-top:-15px;">
 									<small> '. '<i class="fa fa-thumb-tack text-danger" style="font-size:15px;"></i>'.' ' .$order['status'].'</small>
 								</div>
-
+								<div class="container-fluid">
+							 <img src="'.$order['img'].'" style="width:100%">
+								</div>
 								<div class="text-lg font-weight-bold text-dark text-uppercase text-center mb-1 mt-1">
 										'.$order['menuName'].'
 									 </div>

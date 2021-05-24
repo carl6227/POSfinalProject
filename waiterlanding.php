@@ -21,17 +21,14 @@ session_start();
     
 
 ?>
-<style>
-   
-   
-</style>
+
 <!-- Begin Page Content -->
 <div class="container-fluid">
 
     <div class="container">
         <h2 class="tableIndicator">Menu</h2>
         <div class="row">
-            <div class="container-fluid orderWrapper" style="overflow-y:auto;height:600px;">
+            <div class="container-fluid orderWrapper" style="overflow-y:auto;height:1000px; margin-bottom:-350px">
             <div class="row">
                 <?php $myRestruant->dispMenuForWaiter();?>
             </div>
@@ -44,7 +41,7 @@ session_start();
                 <button class="btn btn-info float-right mb-4 addBtn" data-toggle="modal"
                     data-target="#addOrderModal"><i class="fa fa-plus"></i> Add Order</button>
             </div>
-            <div class="container-fluid mb-5" style="overflow-y:auto;height: 350px;">
+            <div class="container-fluid mb-5" style="overflow-y:auto;height: 200px;">
                 <table class="table table-hover tableWrapper" >
                     <thead >
                         <tr>

@@ -27,9 +27,11 @@
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
-
+        <link href="menuCardStyle.css" rel="stylesheet">
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
+   
+
 
 </head>
 
@@ -71,6 +73,11 @@
                           <a  type="button" class="collapse-item storeTable" name="3">Table 3</a>
                           <a  type="button" class="collapse-item storeTable" name="4">Table 4</a>
                           <a  type="button" class="collapse-item storeTable" name="5">Table 5</a>
+                          <a  type="button" class="collapse-item storeTable" name="6">Table 6</a>
+                          <a  type="button" class="collapse-item storeTable" name="7">Table 7</a>
+                          <a  type="button" class="collapse-item storeTable" name="8">Table 8</a>
+                          <a  type="button" class="collapse-item storeTable" name="9">Table 9</a>
+                          <a  type="button" class="collapse-item storeTable" name="10">Table 10</a>
                       </div>
                   </div>
         </ul>
