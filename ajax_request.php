@@ -49,9 +49,9 @@
                  <p class="status"> '.$item['status'].'</p>
                 </td>
                 <td>
-				<button class="btn btn-outline-success deliverBtn" >deliver</button>
-				<input type="hidden" value="'.$item['order_id'].'">
-                <button type="button" class="btn btn-outline-danger cancelBtn" >Cancel</button>
+					<button class="btn btn-outline-success deliverBtn" >deliver</button>
+					<input type="hidden" value="'.$item['order_id'].'">
+					<button type="button" class="btn btn-outline-danger cancelBtn" >Cancel</button>
                 </td>
 				</tr>';
 				
