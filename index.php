@@ -17,9 +17,14 @@ if ($user == "") {
 require_once 'navs.php'
 ?>
 
-
+<div class="load">
+    <hr />
+    <hr />
+    <hr />
+    <hr />
+</div>
 <!-- Begin Page Content -->
-<div class="container-fluid">
+<div class="container-fluid" id="preload" style="display:none">
 
 
 
@@ -77,14 +82,14 @@ echo '
             </div>
         </div>';
 ?>
- 
+
         <div class="container my-4 text-center">
             <hr class="bg-dark">
 
             <p class="font-weight-bold text-lg"> Customers Favourite</p>
 
 
-            <div class="" >
+            <div class="">
                 <canvas id="pieChart" style="max-width: 800px;margin-left:150px;"></canvas>
             </div>
 
@@ -221,6 +226,12 @@ var myPieChart = new Chart(ctxP, {
         responsive: true
     }
 });
+        $(document).ready(function() {
+            setTimeout(function() {
+                $('.load').remove()
+                $('#preload').show()
+            }, 1500);
+        });
 </script>
 </body>
 
