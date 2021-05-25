@@ -77,7 +77,7 @@ require_once 'navs.php'
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">' . $saleDate['totalmenu'] . '</div>
                                         </div>
                                         <div class="col-auto">
-                                            <i class="fas fa-coins fa-2x text-gray-300"></i>
+                                            <i class="fas fa-utensils fa-2x text-gray-300"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -102,7 +102,7 @@ require_once 'navs.php'
                                         <div class="h5 mb-0 font-weight-bold text-gray-800"> ' . $pendingOrders['countPending'] . '</div>
                                     </div>
                                     <div class="col-auto">
-                                        <i class="fas fa-coins fa-2x text-gray-300"></i>
+                                        <i class="fa fa-exclamation-circle fa-2x text-gray-300"></i>
                                     </div>
                                 </div>
                             </div>
@@ -113,11 +113,11 @@ require_once 'navs.php'
         <div class="container my-4 ">
             <hr class="bg-info">
 
-   <p class="font-weight-bold text-lg "> Customers Order Transactions</p>
+            <p class="font-weight-bold text-lg "> Customers Order Transactions</p>
 
-                <div class="coontainer">
-                <table class="table table-hover " >
-                    <thead id="myThead">
+            <div class="coontainer">
+                <table id="example" class="table table-striped table-bordered" style="width:100%">
+                    <thead id="myThead" class="bg-info text-light">
                         <tr>
                             <th>table number</th>
                             <th>Menu </th>
@@ -127,64 +127,64 @@ require_once 'navs.php'
                             <th>Status</th>
                         </tr>
                     </thead>
-
                     <tbody>
-                    <?php
+                        <?php
           
-                    $connection = $myrestaurant->openConnection();
-                    $statement = $connection->prepare("SELECT * FROM  order_table ");
-                    $statement->execute();
-                    $items = $statement->fetchAll();
-                    foreach($items as $item) {
-                    echo '
-                    <tr>
-            
-                    <td>
-                      <p>  '.$item['tableNo'].'</p>
-                    </td>
-                    <td >
-                    <b>Php</b> '.$item['menuName'].'
-                    </td>
-                    <td >
-                    '.$item['quantity'].'
-                    </td>
-                    <td>
-                  '.$item['price'].'
-                    </td>
-                    <td>
-                    <b>Php</b> '.$item['subtotal'].'
-                     </td>
-                    <td>
-                     <p class="status"> '.$item['status'].'</p>
-                    </td>
-                  
-                    </tr>';
-                    }
-                   ?>
+          $connection = $myrestaurant->openConnection();
+          $statement = $connection->prepare("SELECT * FROM  order_table ");
+          $statement->execute();
+          $items = $statement->fetchAll();
+          foreach($items as $item) {
+          echo '
+          <tr>
+  
+          <td>
+            <p>  '.$item['tableNo'].'</p>
+          </td>
+          <td >
+          <b>Php</b> '.$item['menuName'].'
+          </td>
+          <td >
+          '.$item['quantity'].'
+          </td>
+          <td>
+        '.$item['price'].'
+          </td>
+          <td>
+          <b>Php</b> '.$item['subtotal'].'
+           </td>
+          <td>
+           <p class="status"> '.$item['status'].'</p>
+          </td>
+        
+          </tr>';
+          }
+         ?>
                     </tbody>
+            
                 </table>
-                
-                </div>
-                <div class="container">
-                <hr class="bg-info">
-                    <p class="font-weight-bold text-lg"> Customers Favourite</p>
-
-
-                    <div class="">
-                        <canvas id="pieChart" style="max-width: 800px;margin-left:150px;"></canvas>
-                    </div>
-                </div>
 
             </div>
+            <div class="container">
+                <hr class="bg-info">
+                <p class="font-weight-bold text-lg"> Customers Favourite</p>
 
+
+                <div class="">
+                    <canvas id="pieChart" style="max-width: 800px;margin-left:150px;"></canvas>
+                </div>
+            </div>
 
         </div>
 
 
-
-
     </div>
-    <!-- /.container-fluid -->
+
+
+
+
+</div>
+<!-- /.container-fluid -->
 
 </div>
 <!-- End of Main Content -->
@@ -296,6 +296,10 @@ require_once 'navs.php'
 <!-- Page level custom scripts -->
 <script src="js/demo/chart-area-demo.js"></script>
 <script src="js/demo/chart-pie-demo.js"></script>
+<script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js
+"></script> 
+<script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js
+"></script>
 <script>
 var ctxP = document.getElementById("pieChart").getContext('2d');
 var myPieChart = new Chart(ctxP, {
@@ -318,6 +322,16 @@ $(document).ready(function() {
         $('#preload').show()
     }, 1500);
 });
+
+
+    $('.editBtn').on('click', function() {
+        console.log($(this).parent().prev().modal('show'))
+
+    })
+
+    $(document).ready(function() {
+    $('#example').DataTable();
+} );
 </script>
 </body>
 
