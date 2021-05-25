@@ -7,7 +7,7 @@ $myrestaurant->updateInfo(); // calling updateInfo function
 $user = $_SESSION['username']; // assign the session into user variable
 
 // checking if var user session is directly set
-if ($user == "") {
+if ($user != "Admin") {
     header('location:login.php');
 }
 ?>
@@ -264,7 +264,13 @@ require_once 'navs.php'
                    <label for="exampleInputEmail1" class="mr-3">New Password:</label>
                    <input type="password" class="form-control" name="password" value="'.$userInfo['password'].'">
                    <input type="hidden" class="form-control" name="id"value="'.$userInfo['user_id'].'">
-                </div>
+                </div><br>
+                <div class="input-group input-group-lg">
+                <label for="exampleInputEmail1" class="mr-3">New Profile pic:</label>
+                <input type="text" class="form-control" name="userImg" value="'.$userInfo['img'].'"><br>
+                <input type="hidden" class="form-control" name="userType" value="'.$userInfo['type'].'">
+               
+             </div>
                         ';
             ?>
 

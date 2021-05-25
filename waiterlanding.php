@@ -221,6 +221,8 @@ session_start();
                 <label for="exampleInputEmail1" class="mr-3">New Image URL:</label>
                 <input type="text" class="form-control" name="userImg" value="'.$userInfo['img'].'">
                 <input type="hidden" class="form-control" name="id"value="'.$userInfo['user_id'].'">
+                <input type="hidden" class="form-control" name="userType" value="'.$userInfo['type'].'">
+
                 </div>
                         ';
             ?>

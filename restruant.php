@@ -227,12 +227,17 @@
                 $address=$_POST["address"]; 
                 $email=$_POST['email'];   
                 $password= $_POST['password']; 
-                $image=$_POST['userImg'];     
+                $image=$_POST['userImg'];  
+                $userType = $_POST['userType'];
                 $connection =$this->openConnection(); 
                 $statement=$connection->prepare("UPDATE users_table  SET  fullName=?, email=?, password=?,address=?, img=?  WHERE user_id=$id");
                 $statement->execute([$fullname,$email,$password,$address,$image]);
-                echo "<script> location.replace('login.php'); </script>";  
+                if($userType=="1"){
+                    echo "<script> location.replace('index.php'); </script>";  
+                }else if ($userType=="0"){
+                echo "<script> location.replace('waiterlanding.php'); </script>";  
             }
+        }
         }
 
 
