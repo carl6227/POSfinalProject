@@ -111,10 +111,15 @@
                                     <label for="exampleInputEmail1">Menu Name</label>
                                     <input type="text" class="form-control" name="newMenuName"aria-label="Large" value="'.$item['menuName'].'">
                                 </div>
+                               
                                 <div class="form-group input-group-lg">
                                     <label for="exampleInputEmail1">Price</label>
                                     <input type="number" class="form-control" name="newPrice"aria-label="Large" value="'.$item['price'].'" >
                                 </div>
+                                <div class="form-group input-group-lg"> 
+                                <label for="exampleInputEmail1">New Menu image URL</label>
+                                <input type="text" class="form-control" name="newmenuImg"aria-label="Large" value="'.$item['img'].'">
+                            </div>
                            </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
@@ -175,10 +180,11 @@
                 $dateAdded = date('Y-m-d H:i:s');
                 $category=$_POST['category'];
                 $menuName=$_POST['menuName'];  
-                $price=$_POST['price'];    
+                $price=$_POST['price'];   
+                $image=$_POST['menuImg'];     
                 $connection =$this->openConnection(); 
-                $statement=$connection->prepare("INSERT INTO  menu(category,menuName,price,createdAt) VALUES(?,?,?,?)");
-                $statement->execute([$category,$menuName,$price,$dateAdded]);
+                $statement=$connection->prepare("INSERT INTO  menu(category,menuName,price,createdAt,img) VALUES(?,?,?,?,?)");
+                $statement->execute([$category,$menuName,$price,$dateAdded,$image,]);
             }
         }
         // Admin functionalities to delete menu 'Soft delete'
@@ -200,22 +206,18 @@
                 $newCategory=$_POST['newCategory']; 
                 $newMenuName=$_POST['newMenuName'];   
                 $newPrice= intVal($_POST['newPrice']); 
+                $newimage=$_POST['newmenuImg'];   
                 $connection =$this->openConnection(); 
-                $statement=$connection->prepare("UPDATE menu  SET  category=?, menuName=?,price=?,updatedAt=?  WHERE menuID=$id");
-                $statement->execute([$newCategory,$newMenuName,$newPrice,$updatedAt]);
+                $statement=$connection->prepare("UPDATE menu  SET  category=?, menuName=?,price=?,updatedAt=? img=? WHERE menuID=$id");
+                $statement->execute([$newCategory,$newMenuName,$newPrice,$updatedAt,$newImage]);
                
             }
         }
        
         
           
-          
-        
 
-
-        // Waiter functionalities to add ORDER
-       
-
+        // Waiter functionalities to upadte personal information
         public function updateInfo(){
             if(isset($_POST['editProfileBtn'])){
                

@@ -28,7 +28,7 @@ session_start();
     <div class="container">
         <h2 class="tableIndicator">Menu</h2>
         <div class="row">
-            <div class="container-fluid orderWrapper" style="overflow-y:auto;height:1000px; margin-bottom:-350px">
+            <div class="container-fluid orderWrapper" >
             <div class="row">
                 <?php $myRestruant->dispMenuForWaiter();?>
             </div>

@@ -15,7 +15,12 @@ if ($user == "") {
     echo "<script> location.replace('login.php'); </script>";   
 }
 ?>
+
 <div class="container mb-5">
+         <button class="btn btn-info float-right addBtn" data-toggle="modal"
+                    data-target="#addModal"><i class="fa fa-plus"></i> Add Order</button>
+            </div>
+
     <table id="example" class="table table-striped table-bordered" style="width:100%">
         <thead class="bg-info text-light text-center">
             <tr>
@@ -38,7 +43,7 @@ if ($user == "") {
 </div>
 <!-- End of Main Content -->
 
-</div>
+
 
 <!-- Add Menu Modal -->
 <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -63,6 +68,10 @@ if ($user == "") {
                     <div class="form-group input-group-lg">
                         <label for="exampleInputEmail1">Price</label>
                         <input type="number" class="form-control" name="price" aria-label="Large">
+                    </div>
+                    <div class="form-group input-group-lg">
+                        <label for="exampleInputEmail1">Menu Image</label>
+                        <input type="text" class="form-control" name="menuImg" aria-label="Large">
                     </div>
             </div>
             <div class="modal-footer">
