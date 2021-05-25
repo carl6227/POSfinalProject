@@ -206,8 +206,8 @@ session_start();
                 <div class="input-group input-group-lg mb-4">
                 <label for="exampleInputEmail1" class="mr-4">New Address:</label>
                 <input type="text" class="form-control" name="address"value="'.$userInfo['address'].'">
-            </div>
-                <div class="input-group input-group-lg">
+               </div>
+                <div class="input-group input-group-lg mb-4">
                    <label for="exampleInputEmail1" class="mr-3">New Password:</label>
                    <input type="password" class="form-control" name="password" value="'.$userInfo['password'].'">
                    <input type="hidden" class="form-control" name="id"value="'.$userInfo['user_id'].'">
@@ -216,7 +216,7 @@ session_start();
                 <label for="exampleInputEmail1" class="mr-3">New Image URL:</label>
                 <input type="text" class="form-control" name="userImg" value="'.$userInfo['img'].'">
                 <input type="hidden" class="form-control" name="id"value="'.$userInfo['user_id'].'">
-             </div>
+                </div>
                         ';
             ?>
           
