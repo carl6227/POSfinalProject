@@ -39,13 +39,14 @@ require_once 'navs.php'
         $statement->execute();
         $saleDate = $statement->fetch();
         echo '
-                <div class="col-xl-g col-md-6 mb-4">
+                <div class="col-xl-4 col-md-4 mb-4">
                     <div class="card border-left-primary shadow h-100 py-2">
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
                                     <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                        Earnings (Today)</div>
+                                    Total sales Today
+                                    </div>
                                     <div class="h5 mb-0 font-weight-bold text-gray-800">Php ' . $saleDate['totalAmount'] . '</div>
                                 </div>
                                 <div class="col-auto">
@@ -58,42 +59,127 @@ require_once 'navs.php'
         ?>
 
         <?php
-$yesterday = date('Y-m-d', strtotime("-1 days"));
-$connection = $myrestaurant->openConnection();
-$statement = $connection->prepare("SELECT sum(amount) as totalAmount FROM  sales where date='$yesterday'");
-$statement->execute();
-$saleDate = $statement->fetch();
-echo '
-        <!-- Earnings (Monthly) Card Example -->
-        <div class="col-xl-6 col-md-6 mb-4">
-            <div class="card border-left-success shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                Earnings (YesterDay)</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">Php ' . $saleDate['totalAmount'] . '</div>
+                
+                $connection = $myrestaurant->openConnection();
+                $statement = $connection->prepare("SELECT count(*) as totalmenu FROM  menu");
+                $statement->execute();
+                $saleDate = $statement->fetch();
+                echo '
+                        <!-- Earnings (Monthly) Card Example -->
+                        <div class="col-xl-4 col-md-4 mb-4">
+                            <div class="card border-left-success shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                            
+                                                Total Menu</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">' . $saleDate['totalmenu'] . '</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-coins fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>';
+        ?>
+        <?php
+          
+            $connection = $myrestaurant->openConnection();
+            $statement = $connection->prepare("SELECT count(status) as countPending FROM  order_table where status='pending'");
+            $statement->execute();
+            $pendingOrders = $statement->fetch();
+            echo '
+                    <!-- Earnings (Monthly) Card Example -->
+                    <div class="col-xl-4 col-md-4 mb-4">
+                        <div class="card border-left-warning shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                           Pending Requests</div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800"> ' . $pendingOrders['countPending'] . '</div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-coins fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-auto">
-                            <i class="fas fa-coins fa-2x text-gray-300"></i>
-                        </div>
+                    </div>';
+                    ?>
+
+        <div class="container my-4 ">
+            <hr class="bg-info">
+
+   <p class="font-weight-bold text-lg "> Customers Order Transactions</p>
+
+                <div class="coontainer">
+                <table class="table table-hover " >
+                    <thead id="myThead">
+                        <tr>
+                            <th>table number</th>
+                            <th>Menu </th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                            <th>Subtotal</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                    <?php
+          
+                    $connection = $myrestaurant->openConnection();
+                    $statement = $connection->prepare("SELECT * FROM  order_table ");
+                    $statement->execute();
+                    $items = $statement->fetchAll();
+                    foreach($items as $item) {
+                    echo '
+                    <tr>
+            
+                    <td>
+                      <p>  '.$item['tableNo'].'</p>
+                    </td>
+                    <td >
+                    <b>Php</b> '.$item['menuName'].'
+                    </td>
+                    <td >
+                    '.$item['quantity'].'
+                    </td>
+                    <td>
+                  '.$item['price'].'
+                    </td>
+                    <td>
+                    <b>Php</b> '.$item['subtotal'].'
+                     </td>
+                    <td>
+                     <p class="status"> '.$item['status'].'</p>
+                    </td>
+                  
+                    </tr>';
+                    }
+                   ?>
+                    </tbody>
+                </table>
+                
+                </div>
+                <div class="container">
+                <hr class="bg-info">
+                    <p class="font-weight-bold text-lg"> Customers Favourite</p>
+
+
+                    <div class="">
+                        <canvas id="pieChart" style="max-width: 800px;margin-left:150px;"></canvas>
                     </div>
                 </div>
+
             </div>
-        </div>';
-?>
 
-        <div class="container my-4 text-center">
-            <hr class="bg-dark">
-
-            <p class="font-weight-bold text-lg"> Customers Favourite</p>
-
-
-            <div class="">
-                <canvas id="pieChart" style="max-width: 800px;margin-left:150px;"></canvas>
-            </div>
 
         </div>
+
 
 
 
@@ -226,12 +312,12 @@ var myPieChart = new Chart(ctxP, {
         responsive: true
     }
 });
-        $(document).ready(function() {
-            setTimeout(function() {
-                $('.load').remove()
-                $('#preload').show()
-            }, 1500);
-        });
+$(document).ready(function() {
+    setTimeout(function() {
+        $('.load').remove()
+        $('#preload').show()
+    }, 1500);
+});
 </script>
 </body>
 
