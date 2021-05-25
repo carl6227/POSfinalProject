@@ -21,9 +21,14 @@ session_start();
     
 
 ?>
-
+<div class="load">
+    <hr />
+    <hr />
+    <hr />
+    <hr />
+</div>
 <!-- Begin Page Content -->
-<div class="container-fluid">
+<div class="container-fluid" id="preload" style="display:none;">
 
     <div class="container">
         <h2 class="tableIndicator">Menu</h2>
@@ -239,7 +244,14 @@ session_start();
 
 
 </script>
-
+<script>
+     $(document).ready(function() {
+            setTimeout(function() {
+                $('.load').remove()
+                $('#preload').show()
+            }, 1500);
+        });
+</script>
 </body>
 
 </html>
