@@ -1,4 +1,6 @@
 $(document).ready(function () {
+ 
+
   $(".orderWrapper").show();
   $(".tableWrapper").hide();
   //hide the table when  click and show the orders
@@ -17,6 +19,7 @@ $(document).ready(function () {
     $(".tableNo").val(tableNumber);
     $(".tableWrapper").show();
     $(".orderWrapper").hide();
+   
   });
 
   function displaySpecificOrders() {

@@ -1,6 +1,7 @@
 <?php
 session_start();
 $_SESSION['username']="";
+$_SESSION['userImage']="";
 $_SESSION['errorMsg']="";
 
     include_once('restruant.php');

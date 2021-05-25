@@ -51,6 +51,7 @@
                 $total= $statement->rowCount();
                 if($total>0 ){
                 $_SESSION['username']=$user['fullName'];
+                $_SESSION['userImage']=$user['img'];
                 unset($_SESSION['errorMsg']);
 
                 // checking the type of the user and redirecting to a specific page whether the user is in waiters page or at admin side.
@@ -217,7 +218,7 @@
         
           
 
-        // Waiter functionalities to upadte personal information
+        // Waiter and Admin functionality to update personal information
         public function updateInfo(){
             if(isset($_POST['editProfileBtn'])){
                
@@ -226,9 +227,10 @@
                 $address=$_POST["address"]; 
                 $email=$_POST['email'];   
                 $password= $_POST['password']; 
+                $image=$_POST['userImg'];     
                 $connection =$this->openConnection(); 
-                $statement=$connection->prepare("UPDATE users_table  SET  fullName=?, email=?, password=?,address=?  WHERE user_id=$id");
-                $statement->execute([$fullname,$email,$password,$address]);
+                $statement=$connection->prepare("UPDATE users_table  SET  fullName=?, email=?, password=?,address=?, img=?  WHERE user_id=$id");
+                $statement->execute([$fullname,$email,$password,$address,$image]);
                 echo "<script> location.replace('login.php'); </script>";  
             }
         }
@@ -239,7 +241,7 @@
 
 
 
-
+ // Waiterfunctionalities
 
 //add order function
 
