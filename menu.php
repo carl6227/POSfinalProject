@@ -18,7 +18,7 @@ if ($user == "") {
 
 <div class="container mb-5">
          <button class="btn btn-info float-right addBtn" data-toggle="modal"
-                    data-target="#addModal"><i class="fa fa-plus"></i> Add Order</button>
+                    data-target="#addModal"> Add Menu</button>
             </div>
 
     <table id="example" class="table table-striped table-bordered" style="width:100%">
@@ -27,6 +27,7 @@ if ($user == "") {
                 <th>ID</th>
                 <th>Menu</th>
                 <th>Category</th>
+                <th>Price</th>
                 <th>Action</th>
             </tr>
         </thead>

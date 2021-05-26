@@ -142,7 +142,7 @@ require_once 'navs.php'
             <p>  '.$item['tableNo'].'</p>
           </td>
           <td >
-          <b>Php</b> '.$item['menuName'].'
+          '.$item['menuName'].'
           </td>
           <td >
           '.$item['quantity'].'

@@ -21,7 +21,7 @@
                
                 $this->connection= new PDO(
                     $this->server,
-                    $this->user,
+                    $this->user,    
                     $this->password,
                     $this->options
                 );
@@ -88,6 +88,9 @@
              </td>
              <td>
                 '.$item['category'].'
+             </td>
+             <td>
+                '.$item['price'].'
              </td>
              <td>
              
@@ -209,8 +212,8 @@
                 $newPrice= intVal($_POST['newPrice']); 
                 $newimage=$_POST['newmenuImg'];   
                 $connection =$this->openConnection(); 
-                $statement=$connection->prepare("UPDATE menu  SET  category=?, menuName=?,price=?,updatedAt=? img=? WHERE menuID=$id");
-                $statement->execute([$newCategory,$newMenuName,$newPrice,$updatedAt,$newImage]);
+                $statement=$connection->prepare("UPDATE menu  SET  category=?, menuName=?,price=?,updatedAt=?, img=? WHERE menuID=$id");
+                $statement->execute([$newCategory,$newMenuName,$newPrice,$updatedAt,$newimage]);
                
             }
         }
