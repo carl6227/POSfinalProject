@@ -1,6 +1,5 @@
 $(document).ready(function () {
  
-
   $(".orderWrapper").show();
   $(".tableWrapper").hide();
   //hide the table when  click and show the orders
@@ -18,6 +17,7 @@ $(document).ready(function () {
     $(".tableIndicator").text("Table Number: " + tableNumber.toString());
     $(".tableNo").val(tableNumber);
     $(".tableWrapper").show();
+    $(".billWrapper").show();
     $(".orderWrapper").hide();
    
   });
